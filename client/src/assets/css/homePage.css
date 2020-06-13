@@ -1,3 +1,15 @@
+.avatar.avatar-danger{
+  vertical-align: middle;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  border: none !important;
+}
+
+.main-page{
+  align-items: center;
+}
+
 .navbar-custom{
   background-color: white;
   opacity: 1;
