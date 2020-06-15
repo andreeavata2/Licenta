@@ -73,7 +73,7 @@ router.post("/register", (req, res) => {
 
 // @route Get api/users/login
 // @desc Login user and return JWT token
-router.get("/login", (req, res) => {
+router.post("/login", (req, res) => {
     // Form validation
     const { errors, isValid } = validateLoginInput(req.body);
     // Check validation

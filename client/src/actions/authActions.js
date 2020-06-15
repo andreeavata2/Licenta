@@ -8,9 +8,9 @@ import {
 } from "./types";
 
 // Register User
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = (studentData, history) => dispatch => {
     axios
-        .post("/api/users/register", userData)
+        .post("/api/users/register", studentData)
         .then(res => history.push("/login")) // re-direct to login on successful register
         .catch(err =>
             dispatch({
@@ -21,10 +21,11 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 // Login - get user token
-export const loginUser = userData => dispatch => {
+export const loginUser = (studentData,history) => dispatch => {
     axios
-        .get("/api/users/login", userData)
+        .post("/api/users/login", studentData)
         .then(res => {
+            console.log("Action")
             // Save to localStorage
             // Set token to localStorage
             const { token } = res.data;
@@ -35,6 +36,7 @@ export const loginUser = userData => dispatch => {
             const decoded = jwt_decode(token);
             // Set current user
             dispatch(setCurrentUser(decoded));
+            history.push('/')
         })
         .catch(err =>
             dispatch({

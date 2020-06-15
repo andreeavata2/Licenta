@@ -44,13 +44,17 @@ class Login extends Component {
     onSubmit = e => {
         e.preventDefault();
 
+        // const userData = {
+        //     email: this.state.email,
+        //     password: this.state.password
+        // };
         const userData = {
-            email: this.state.email,
-            password: this.state.password
+            email: 'vatamanelu@yahoo.com',
+            password: 'parola123'
         };
         console.log(userData);
 
-        this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+        this.props.loginUser(userData,this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
     };
     render() {
         const { errors } = this.state;

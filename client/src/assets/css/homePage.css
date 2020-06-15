@@ -1,3 +1,6 @@
+body{
+  font-family: 'Metal Mania', cursive !important;
+}
 .header-button{
   width: auto !important;
 }
@@ -97,7 +100,7 @@ html {
   .content-blog p {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    font-family: "Cambo", "Times New Roman", serif;
+    font-family: 'Roboto', sans-serif;
   }
   h1 a,
   .h1 a,
@@ -113,7 +116,7 @@ html {
   .h6 a,
   .content-blog p a {
     font-size: inherit;
-    font-family: "Cambo", "Times New Roman", serif;
+    font-family: 'Roboto', sans-serif;
   }
   
   .content-blog {
@@ -1470,22 +1473,36 @@ html {
     display: inline-block;
   }
   .total-navbar{
-    padding: 5px 5px;
+    /* padding: 5px 5px; */
+    padding:0;
+    position: fixed;
+    top: 0;
+    left: 10%;
+    z-index: 999;
+    width: 80%;
+    margin: 20px auto;
   }
   .navbar {
     border: 0;
     font-size: 16px;
+    padding: 0 !important;
+    margin: 0;
+    min-height: auto;
+
     /* padding: 1px 1px !important; */
   }
   .navbar .navbar-brand {
-    margin: 10px 0px;
+    /* margin: 10px 0px; */
     padding: 15px 15px;
     font-size: 20px;
     line-height: 22px;
+    margin:0;
+    padding: 10px 20px;
+    height: auto;
   }
   .navbar .navbar-nav > li > a {
     padding: 10px 15px;
-    margin: 15px 3px;
+    margin: 0;
     line-height: 18px;
   }
   .navbar .navbar-nav > .social-links > a {
@@ -1515,7 +1532,13 @@ html {
   .navbar .btn {
     margin: 15px 3px;
     font-size: 14px;
+    width: auto;
+    border-radius: 3px;
+    letter-spacing: 1.5px;
+    margin: 0;
+    padding: 10px 15px;
   }
+
   .navbar .btn-simple {
     font-size: 16px;
   }
@@ -2955,7 +2978,7 @@ html {
     .project-content .article .project-image {
       width: 100% !important;
     }
-  
+   
     .navbar-transparent .navbar-brand {
       color: #ffffff;
     }

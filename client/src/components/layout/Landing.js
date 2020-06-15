@@ -10,6 +10,7 @@ import imageBackground2 from "../../assets/img/header-3.jpg";
 import face1 from "../../assets/img/faces/face_1.jpg";
 import face2 from "../../assets/img/faces/face_2.jpg";
 import face3 from "../../assets/img/faces/face_3.jpg";
+import Navbar from './Navbar';
 
 class Landing extends Component {
     render() {
@@ -28,6 +29,7 @@ class Landing extends Component {
                                     }}
                                 >
                                 </div>
+
                                 <div className="jumbotron vertical-center">
                                     <div className="container" style={{ textAlign: "center" }}>
                                         <div className="content">
