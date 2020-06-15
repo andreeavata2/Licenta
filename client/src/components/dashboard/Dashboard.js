@@ -20,7 +20,7 @@ class Dashboard extends Component {
                             <p className="flow-text grey-text text-darken-1">
                                 You are logged into a full-stack{" "}
                                 <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
+                            </p>
                         </h4>
                         <button
                             style={{
@@ -33,7 +33,7 @@ class Dashboard extends Component {
                             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
                             Logout
-            </button>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import "../../assets/css/bootstrap.css";
+import "../../assets/css/bootstrap.css";
 import "../../assets/css/homePage.css";
 // import 'font-awesome/css/font-awesome.min.css';
 import "../../../node_modules/font-awesome/css/font-awesome.min.css"
@@ -16,7 +16,7 @@ class Landing extends Component {
         return (
             <>
                 <div>
-                    <din className="main-page">
+                    <div className="main-page">
                         <div className="section section-header">
                             <div className="parallax filter filter-color-red">
                                 <div className="image"
@@ -28,20 +28,21 @@ class Landing extends Component {
                                     }}
                                 >
                                 </div>
-
-                                <div className="container">
-                                    <div className="content">
-                                        <div className="title-area">
-                                            <h1 className="title-modern">License Management</h1>
-                                            <div className="separator line-separator">♦</div>
-                                            <h3>Probably the most useful site for organizing licenses!</h3>
+                                <div className="jumbotron vertical-center">
+                                    <div className="container" style={{ textAlign: "center" }}>
+                                        <div className="content">
+                                            <div className="title-area">
+                                                <h1 className="title-modern">License Management</h1>
+                                                <div className="separator line-separator">♦</div>
+                                                <h3>Probably the most useful site for organizing licenses!</h3>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                    </din>
+                    </div>
 
 
                     <div className="section">

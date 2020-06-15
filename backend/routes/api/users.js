@@ -11,10 +11,33 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
+// route POST api/users/delete
+// delete a student from id
+router.delete("/delete", async (req, res) => {
+    const id = req.body.id;
+    var student;
+
+    try {
+        student = await User.findById(id);
+    } catch (error) {
+        return res.status(400).json(error);
+    }
+
+    if (student) {
+        try {
+            const removedStudent = await User.findByIdAndRemove(id);
+            return res.status(200).json(`student ${student.name} was deleted`);
+        } catch (error) {
+            return res.status(404).json("error at delete");
+
+        }
+    } else {
+        return res.status(404).json("Student not found in DB");
+    }
+})
 
 // @route POST api/users/register
 // @desc Register user
-// @access Public
 router.post("/register", (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -48,10 +71,9 @@ router.post("/register", (req, res) => {
 });
 
 
-// @route POST api/users/login
+// @route Get api/users/login
 // @desc Login user and return JWT token
-// @access Public
-router.post("/login", (req, res) => {
+router.get("/login", (req, res) => {
     // Form validation
     const { errors, isValid } = validateLoginInput(req.body);
     // Check validation
@@ -97,5 +119,18 @@ router.post("/login", (req, res) => {
         });
     });
 });
+
+
+//route GET api/users/
+//return all list of students
+router.get("/", async (req, res) => {
+    try {
+        const students = await User.find();
+        return res.status(200).json({data: students});
+    } catch (error) {
+        return res.status(500).json({msg: "Went wrong"});
+    }
+
+})
 
 module.exports = router;

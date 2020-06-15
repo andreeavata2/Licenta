@@ -1,3 +1,7 @@
+.header-button{
+  width: auto !important;
+}
+
 .avatar.avatar-danger{
   vertical-align: middle;
   width: 100%;
