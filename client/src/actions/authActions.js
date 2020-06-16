@@ -10,7 +10,7 @@ import {
 // Register User
 export const registerUser = (studentData, history) => dispatch => {
     axios
-        .post("/api/users/register", studentData)
+        .post("http://localhost:5000/api/users/register", studentData)
         .then(res => history.push("/login")) // re-direct to login on successful register
         .catch(err =>
             dispatch({
@@ -23,7 +23,7 @@ export const registerUser = (studentData, history) => dispatch => {
 // Login - get user token
 export const loginUser = (studentData,history) => dispatch => {
     axios
-        .post("/api/users/login", studentData)
+        .post("http://localhost:5000/api/users/login", studentData)
         .then(res => {
             console.log("Action")
             // Save to localStorage
@@ -36,7 +36,7 @@ export const loginUser = (studentData,history) => dispatch => {
             const decoded = jwt_decode(token);
             // Set current user
             dispatch(setCurrentUser(decoded));
-            history.push('/')
+            history.push('/dashboard')
         })
         .catch(err =>
             dispatch({

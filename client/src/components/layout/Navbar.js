@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
 
-import FA from "react-fontawesome";
 import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 
@@ -38,7 +37,7 @@ class Navbar extends Component {
                                     >
                                         Home
                                     </Link>
-                                    <span className="sr-only">(current)</span>
+                                    {/* <span className="sr-only">(current)</span> */}
                                 </div>
 
                                 {isAuthenticated ? (
@@ -80,7 +79,7 @@ class Navbar extends Component {
                                                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                                                 onClick={this.onLogoutClick}
                                             >
-                                                Logout
+                                               Logout
                                         </Link>
                                         </div>
                                     </>

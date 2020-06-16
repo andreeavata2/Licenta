@@ -22,7 +22,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
-  if(localStorage.jwtToken !== "undefined"){
+  if (localStorage.jwtToken !== "undefined") {
     const token = localStorage.jwtToken;
 
     setAuthToken(token);
@@ -39,7 +39,7 @@ if (localStorage.jwtToken) {
       window.location.href = "./login";
     }
   }
-  
+
 }
 
 class App extends Component {
@@ -48,8 +48,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-          <Navbar />
-            
+            <Navbar />
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />

@@ -99,6 +99,7 @@ form {
 
 .container-fluid {
   text-align: center;
+  padding-top: 60px !important;
 }
 
 .row.main-content {
