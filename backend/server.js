@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const port = process.env.PORT || 5000;
-
+const cors = require('cors');
 const users = require("./routes/api/users");
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(
         extended: false
     })
 );
-
+app.use(cors())
 app.use(bodyParser.json());
 // DB Config
 const db = require("./config/keys").mongoURI;

@@ -8,6 +8,6 @@ export const getStudentList = () => dispatch => {
         .get("http://localhost:5000/api/users/")
         .then(res => dispatch({
             type: GET_STUDENTS,
-            payload: res.data
+            payload: res.data.data
         }))
 }

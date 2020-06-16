@@ -1,7 +1,6 @@
 import { GET_STUDENTS } from "../actions/types";
 
 const initialState = {
-    // students: [{id: "Vasile"}]
     students: []
 };
 

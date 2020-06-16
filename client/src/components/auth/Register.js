@@ -98,20 +98,6 @@ class Register extends Component {
                             <div className="col s12">
                                 {/* <form noValidate onSubmit={this.onSubmit}> */}
                                 <form control="" className="form-group" noValidate onSubmit={this.onSubmit}>
-                                    {/* <div className="input-field col s12"> */}
-                                    {/* //                     <input
-                            //                         onChange={this.onChange}
-                            //                         value={this.state.name}
-                            //                         error={errors.name}
-                            //                         id="name"
-                            //                         type="text"
-                            //                         className={classnames("", {
-                            //                             invalid: errors.name
-                            //                         })}
-                            //                     />
-                            //                     <label htmlFor="name">Name</label>
-                            //                     <span className="red-text">{errors.name}</span>
-                            //                 </div> */}
                                     <div className="col s12">
                                         <input
                                             onChange={this.onChange}
