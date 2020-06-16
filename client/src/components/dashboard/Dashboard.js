@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Route, Router } from "react-router-dom";
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import './Dashboard.css'
 import { getStudentList } from "../../actions/studentActions";
 
+import "./style.css";
+import Sidebar from "./Sidebar";
+import Table from "./Table";
 
 class Dashboard extends Component {
     static propTypes = {
@@ -18,36 +21,14 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { students } = this.props.student;
         return (
-            <>
-                <div className="container dashboard">
-                    <table
-                        className='table table-bordered'
-                        id='dataTable'
-                        style={{ width: '100%' }}
-                    >
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {students.map((studentt, index) =>
-                                <tr>
-                                    <td key={index}>
-                                        {index + 1}
-                                    </td>
-                                    <td>{studentt.name}</td>
-                                    <td>{studentt.email}</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            </>
+            // <Router>
+            <div className="wrapper d-flex align-items-stretch">
+                <Sidebar />
+                <Table />
+                {/* <Route exact path="/dashboard/table" component={Table} /> */}
+            </div>
+            // </Router>
         );
     }
 }

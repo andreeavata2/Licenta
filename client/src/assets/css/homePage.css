@@ -1489,7 +1489,7 @@ fieldset[disabled] .form-control {
   padding: 0 !important;
   margin: 0;
   min-height: auto;
-  background-color: antiquewhite;
+  background-color: antiquewhite !important;
   /* padding: 1px 1px !important; */
 }
 .navbar .navbar-brand {

@@ -16,6 +16,7 @@ class Landing extends Component {
     render() {
         return (
             <>
+                <Navbar />
                 <div>
                     <div className="main-page">
                         <div className="section section-header">
