@@ -65,7 +65,7 @@ class Navbar extends Component {
                                                 }}
                                                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                                             >
-                                                <MDBIcon icon="user" /> {user.name.split(" ")[0]}
+                                                <MDBIcon icon="user" /> {user.name.split(" ")[0]},  {user.typeUser}
                                             </Link>
                                         </div>
                                         <div className="nav-item nav-link">

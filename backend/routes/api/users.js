@@ -53,7 +53,8 @@ router.post("/register", (req, res) => {
             const newUser = new User({
                 name: req.body.name,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                typeUser: req.body.typeUser
             });
             // Hash password before saving in database
             bcrypt.genSalt(10, (err, salt) => {
@@ -95,7 +96,9 @@ router.post("/login", (req, res) => {
                 // Create JWT Payload
                 const payload = {
                     id: user.id,
-                    name: user.name
+                    name: user.name,
+                    email: user.email,
+                    typeUser: user.typeUser
                 };
                 // Sign token
                 jwt.sign(
@@ -107,7 +110,8 @@ router.post("/login", (req, res) => {
                     (err, token) => {
                         res.json({
                             success: true,
-                            token: "Bearer " + token
+                            token: "Bearer " + token,
+                            // body: user
                         });
                     }
                 );
@@ -126,9 +130,9 @@ router.post("/login", (req, res) => {
 router.get("/", async (req, res) => {
     try {
         const students = await User.find();
-        return res.status(200).json({data: students});
+        return res.status(200).json({ data: students });
     } catch (error) {
-        return res.status(500).json({msg: "Went wrong"});
+        return res.status(500).json({ msg: "Went wrong" });
     }
 
 })

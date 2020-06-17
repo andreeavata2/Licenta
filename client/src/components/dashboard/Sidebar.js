@@ -31,20 +31,6 @@ class Sidebar extends Component {
                                     <a href="/dashboard">About</a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Pages</a>
-                                    <ul className="collapse list-unstyled" id="pageSubmenu">
-                                        <li>
-                                            <a href="#">Page 1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Page 2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Page 3</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
                                     <a href="/dashboard/table">Table</a>
                                 </li>
                                 <li>

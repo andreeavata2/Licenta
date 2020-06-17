@@ -14,6 +14,7 @@ class Register extends Component {
             email: "",
             password: "",
             password2: "",
+            typeUser: "",
             errors: {}
         };
     }
@@ -44,7 +45,8 @@ class Register extends Component {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
-            password2: this.state.password2
+            password2: this.state.password2,
+            typeUser: this.state.typeUser
         };
         console.log(newUser);
 
@@ -83,22 +85,6 @@ class Register extends Component {
                                     </Link>
                                     </p>
                                 </div>
-
-                                {/* <p className="grey-text text-darken-1">
-                                Already have an account?
-                                <Link
-                                    to="/login"
-                                    style={{
-                                        width: "140px",
-                                        borderRadius: "3px",
-                                        letterSpacing: "1.5px",
-                                        margin: "10px"
-                                    }}
-                                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                                >
-                                    Register here
-                                    </Link>
-                            </p> */}
                                 <div className="col s12">
                                     {/* <form noValidate onSubmit={this.onSubmit}> */}
                                     <form control="" className="form-group" noValidate onSubmit={this.onSubmit}>
@@ -166,10 +152,22 @@ class Register extends Component {
                                             />
                                             <span className="red-text">{errors.password2}</span>
                                         </div>
-                                        {/* <div className="row">
-                                        <input type="checkbox" name="remember_me" id="remember_me" className="" />
-                                        <label for="remember_me">Remember Me!</label>
-                                    </div> */}
+                                        <div className="col s12">
+                                            <select class="browser-default custom-select"
+                                                onChange={this.onChange}
+                                                value={this.state.typeUser}
+                                                error={errors.typeUser}
+                                                id="typeUser"
+                                                type="text"
+                                                name="name"
+                                                className="form__input"
+                                            >
+                                                <option selected>Type of user</option>
+                                                <option value="student">Student</option>
+                                                <option value="professor">Professor</option>
+                                            </select>
+                                            <span className="red-text">{errors.typeUser}</span>
+                                        </div>
 
                                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                             <button
