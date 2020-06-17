@@ -79,8 +79,9 @@ class Navbar extends Component {
                                                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                                                 onClick={this.onLogoutClick}
                                             >
-                                               Logout
-                                        </Link>
+                                                Logout
+                                               <i className="fa fa-sign-out"></i>
+                                            </Link>
                                         </div>
                                     </>
                                 ) : (

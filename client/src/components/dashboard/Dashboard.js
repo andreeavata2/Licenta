@@ -24,27 +24,12 @@ class Dashboard extends Component {
 
     render() {
         return (
-            // <Router>
-                <div className="wrapper d-flex align-items-stretch">
-                    <Sidebar />
-                    {/* <Route exact path="/dashboard" component={Sidebar} /> */}
-
-                    {/* <StudentTable /> */}
-                    {/* <Route exact path="/dashboard/table" component={Table} /> */}
-
-
-                    <UserProfile />
-
-
-
-                </div>
-            // </Router>
+            <div className="wrapper d-flex align-items-stretch">
+                <Sidebar />
+            </div>
         );
     }
 }
-
-
-
 
 const mapStateToProps = (state) => ({
     student: state.student

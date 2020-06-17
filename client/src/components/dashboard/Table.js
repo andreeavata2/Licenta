@@ -9,6 +9,7 @@ import { getStudentList } from "../../actions/studentActions";
 import { Row, Col, Table, Grid} from "react-bootstrap";
 // import { Grid } from "react-bootstrap";
 import Card from "./card/Card";
+import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
 // import "./style.css";
 
 class StudentTable extends Component {
@@ -31,7 +32,7 @@ class StudentTable extends Component {
                             <Row>
                                 <Col md={12}>
                                     <Card
-                                        title="Students Table"
+                                        title="Students List"
                                         category="Here is a list with all my students"
                                         ctTableFullWidth
                                         ctTableResponsive
@@ -42,6 +43,7 @@ class StudentTable extends Component {
                                                         <th>ID</th>
                                                         <th scope="col">Name</th>
                                                         <th scope="col">Email</th>
+                                                        <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -52,6 +54,7 @@ class StudentTable extends Component {
                                                             </td>
                                                             <td>{studentt.name}</td>
                                                             <td>{studentt.email}</td>
+                                                            <td> <MDBIcon icon="trash" /> </td>
                                                         </tr>
                                                     )}
                                                 </tbody>

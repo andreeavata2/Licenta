@@ -533,6 +533,15 @@ a,
   visibility: visible;
 }
 
+/* .card .label {
+  font-size: 12px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  display: inline-block;
+  max-width: 100%;
+} */
+
 .card .icon {
   font-size: 75px;
   line-height: 75px;

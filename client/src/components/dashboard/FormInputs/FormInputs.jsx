@@ -15,7 +15,16 @@ export class FormInputs extends Component {
     var row = [];
     for (var i = 0; i < this.props.ncols.length; i++) {
       row.push(
-        <div key={i} className={this.props.ncols[i]}>
+        <div key={i} className={this.props.ncols[i]} style={{
+          "textAlign": "left",
+          "fontSize": "12px",
+          "marginBottom": "5px",
+          "textTransform": "uppercase",
+          "color": "#9a9a9a",
+          "display": "inline-block",
+          "maxWidth": "100%"
+      }}
+>
           <FieldGroup {...this.props.properties[i]} />
         </div>
       );

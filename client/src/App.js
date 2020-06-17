@@ -15,8 +15,13 @@ import Login from './components/auth/Login';
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/private-route/PrivateRoute";
+import StudentTable from "./components/dashboard/Table";
+import UserProfile from './components/dashboard/UserProfile';
+import MainDashboard from "./components/dashboard/MainDashboard";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Table } from 'react-bootstrap';
+import Sidebar from './components/dashboard/Sidebar';
 
 
 // Check for token to keep user logged in
@@ -48,13 +53,33 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-           
-            <Route exact path="/"  component={ Landing} />
+            {/* <Switch> */}
+
+            <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
+
+              <PrivateRoute exact path="/dashboard">
+                <div className="wrapper d-flex align-items-stretch">
+                  <Sidebar />
+                  <MainDashboard />
+                </div>
+              </PrivateRoute>
+              <PrivateRoute exact path="/dashboard/table">
+                <div className="wrapper d-flex align-items-stretch">
+                  <Sidebar />
+                  <StudentTable />
+                </div>
+              </PrivateRoute>
+              <PrivateRoute exact path="/dashboard/userProfile">
+                <div className="wrapper d-flex align-items-stretch">
+                  <Sidebar />
+                  <UserProfile />
+                </div>
+              </PrivateRoute>
+              </Switch>
+                {/* </Switch> */}
           </div>
         </Router>
       </Provider >
