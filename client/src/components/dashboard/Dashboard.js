@@ -1,14 +1,16 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link, withRouter, Route, Router } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import './Dashboard.css'
 import { getStudentList } from "../../actions/studentActions";
 
 import "./style.css";
 import Sidebar from "./Sidebar";
-import Table from "./Table";
+import StudentTable from "./Table";
+import UserProfile from './UserProfile';
 
 class Dashboard extends Component {
     static propTypes = {
@@ -23,11 +25,19 @@ class Dashboard extends Component {
     render() {
         return (
             // <Router>
-            <div className="wrapper d-flex align-items-stretch">
-                <Sidebar />
-                <Table />
-                {/* <Route exact path="/dashboard/table" component={Table} /> */}
-            </div>
+                <div className="wrapper d-flex align-items-stretch">
+                    <Sidebar />
+                    {/* <Route exact path="/dashboard" component={Sidebar} /> */}
+
+                    {/* <StudentTable /> */}
+                    {/* <Route exact path="/dashboard/table" component={Table} /> */}
+
+
+                    <UserProfile />
+
+
+
+                </div>
             // </Router>
         );
     }

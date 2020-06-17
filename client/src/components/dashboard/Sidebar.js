@@ -12,7 +12,6 @@ class Sidebar extends Component {
     render() {
         return (
             <>
-
                 <div className="wrapper d-flex align-items-stretch">
                     <nav id="sidebar">
                         <div className="p-4 pt-5">
@@ -56,6 +55,9 @@ class Sidebar extends Component {
                                 </li>
                                 <li>
                                     <a href="/dashboard/table">Table</a>
+                                </li>
+                                <li>
+                                    <a href="dashboard/userInfo">User Profile</a>
                                 </li>
                                 <li>
                                     <a href="#">Contact</a>
