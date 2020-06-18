@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { render } from '@testing-library/react';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter} from "react-router-dom";
 
 class MainDashboard extends Component {
     render() {
@@ -38,6 +39,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     {}
-)(MainDashboard);
-
-// export default MainDashboard
+)(withRouter(MainDashboard));

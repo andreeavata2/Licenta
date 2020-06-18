@@ -14,11 +14,15 @@ import { Card } from "./card/Card";
 import { FormInputs } from "./FormInputs/FormInputs";
 import { UserCard } from "./UserCard/UserCard";
 import Button from "./CustomButton/CustomButton";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter} from "react-router-dom";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class UserProfile extends Component {
     render() {
+        const { user } = this.props.auth;
         return (
             <div id="content" className="p-4 p-md-5">
                 <div className="container dashboard">
@@ -36,15 +40,15 @@ class UserProfile extends Component {
                                                         label: "User Type (disabled)",
                                                         type: "text",
                                                         bsClass: "form-control",
-                                                        // placeholder: "Company",
-                                                        defaultValue: "Student / Professor",
+                                                        defaultValue: user.typeUser,
                                                         disabled: true
                                                     },
                                                     {
                                                         label: "Email address",
                                                         type: "email",
                                                         bsClass: "form-control",
-                                                        placeholder: "Email"
+                                                        placeholder: "Email",
+                                                        defaultValue: user.email
                                                     }
                                                 ]}
                                             />
@@ -56,7 +60,7 @@ class UserProfile extends Component {
                                                         type: "text",
                                                         bsClass: "form-control",
                                                         placeholder: "Ful name",
-                                                        defaultValue: "Mike Andrew"
+                                                        defaultValue: user.name
                                                     },
                                                     {
                                                         label: "License Name",
@@ -81,7 +85,7 @@ class UserProfile extends Component {
                                                 >License Teacher</label>
                                                 <FormSelect id="feInputState">
                                                     <option>Choose...</option>
-                                                    <option>Alex Moruz</option>
+                                                    <option selected>Alex Moruz</option>
                                                     <option>Florin Olariu</option>
                                                     <option>Adrian Iftene</option>
 
@@ -103,4 +107,14 @@ class UserProfile extends Component {
     }
 }
 
-export default UserProfile;
+UserProfile.propTypes = {
+    auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+});
+export default connect(
+    mapStateToProps,
+    {}
+)(withRouter(UserProfile));

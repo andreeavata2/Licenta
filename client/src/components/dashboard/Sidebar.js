@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link, withRouter, useHistory,Redirect } from "react-router-dom";
+import { Link, withRouter, useHistory, Redirect } from "react-router-dom";
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import './Dashboard.css'
 import { getStudentList } from "../../actions/studentActions";
@@ -15,11 +15,13 @@ import "./style.css";
 
 class Sidebar extends Component {
     onLogoutClick = e => {
+        this.props.history.push('/');
         e.preventDefault();
         this.props.logoutUser();
-        // this.props.history.push('/');
+
     };
     render() {
+        const { user } = this.props.auth;
         return (
             <>
                 <div className="wrapper d-flex align-items-stretch">
@@ -30,29 +32,20 @@ class Sidebar extends Component {
                                 <li>
                                     <a href="/dashboard">About</a>
                                 </li>
-                                <li>
-                                    <a href="/dashboard/table">Table</a>
-                                </li>
+                                {user.typeUser === "professor" ? (
+                                    <li>
+                                        <a href="/dashboard/table">List with my students</a>
+                                    </li>
+                                ) : (null)}
                                 <li>
                                     <a href="/dashboard/userProfile">User Profile</a>
                                 </li>
                                 <li>
                                     <a href="/dashboard">Contact</a>
                                 </li>
-                                {/* <li> */}
-                                {/* <a href="\login" onClick={this.onLogoutClick} >Logout</a> */}
-                                {/* <a href="/login" target="_blank" rel="noopener noreferrer" onClick={this.onLogoutClick}>Logout</a> */}
-                                {/* <Link
-                                        to="/login"
-                                        onClick={this.onLogoutClick}
-                                    >
-                                        Logout
-                                    </Link>
-                                </li> */}
                                 <li>
                                     <Link
-                                        to="/"
-                                        onClick={ this.onLogoutClick}
+                                        onClick={this.onLogoutClick}
                                     >
                                         <i className="fa fa-sign-out pull-right"></i>
                                     Log Out
@@ -79,4 +72,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { logoutUser }
-)(Sidebar);
+)(withRouter(Sidebar));
