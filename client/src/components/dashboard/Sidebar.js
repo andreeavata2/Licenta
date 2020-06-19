@@ -45,6 +45,7 @@ class Sidebar extends Component {
                                 </li>
                                 <li>
                                     <Link
+                                        to='/'
                                         onClick={this.onLogoutClick}
                                     >
                                         <i className="fa fa-sign-out pull-right"></i>

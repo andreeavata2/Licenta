@@ -44,7 +44,7 @@ class Navbar extends Component {
                                     <>
                                         <div className="nav-item nav-link">
                                             <Link
-                                                to="/"
+                                                to="/chat"
                                                 style={{
                                                     width: "auto",
                                                     borderRadius: "3px",

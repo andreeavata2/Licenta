@@ -18,6 +18,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import StudentTable from "./components/dashboard/Table";
 import UserProfile from './components/dashboard/UserProfile';
 import MainDashboard from "./components/dashboard/MainDashboard";
+import Chat from "./components/chat/Chat";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table } from 'react-bootstrap';
@@ -58,6 +59,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/chat" component={Chat} />
             <Switch>
 
               <PrivateRoute exact path="/dashboard">
