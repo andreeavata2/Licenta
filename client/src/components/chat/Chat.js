@@ -6,100 +6,10 @@ import Vue from 'vue-react';
 // let io = require('socket.io');
 // const router = express.Router();
 
+import MessengerCustomerChat from 'react-messenger-customer-chat';
+
 export default class Chat extends Component {
     render() {
-        // var socket = io();
-        // let vue = new Vue({
-        //     el: '#app',
-
-        //     data: {
-        //         newMessage: null,
-        //         messages: [],
-        //         typing: false,
-        //         username: null,
-        //         ready: false,
-        //         info: [],
-        //         connections: 0,
-        //     },
-
-        //     created() {
-        //         window.onbeforeunload = () => {
-        //             socket.emit('leave', this.username);
-        //         }
-
-        //         socket.on('chat-message', (data) => {
-        //             this.messages.push({
-        //                 message: data.message,
-        //                 type: 1,
-        //                 user: data.user,
-        //             });
-        //         });
-
-        //         socket.on('typing', (data) => {
-        //             this.typing = data;
-        //         });
-
-
-        //         socket.on('stopTyping', () => {
-        //             this.typing = false;
-        //         });
-
-        //         socket.on('joined', (data) => {
-        //             this.info.push({
-        //                 username: data,
-        //                 type: 'joined'
-        //             });
-
-        //             setTimeout(() => {
-        //                 this.info = [];
-        //             }, 5000);
-        //         });
-
-        //         socket.on('leave', (data) => {
-        //             this.info.push({
-        //                 username: data,
-        //                 type: 'left'
-        //             });
-
-        //             setTimeout(() => {
-        //                 this.info = [];
-        //             }, 5000);
-        //         });
-
-        //         socket.on('connections', (data) => {
-        //             this.connections = data;
-        //         });
-        //     },
-
-        //     watch: {
-        //         newMessage(value) {
-        //             value ? socket.emit('typing', this.username) : socket.emit('stopTyping')
-        //         }
-        //     },
-
-        //     methods: {
-        //         send() {
-        //             this.messages.push({
-        //                 message: this.newMessage,
-        //                 type: 0,
-        //                 user: 'Me',
-        //             });
-
-        //             socket.emit('chat-message', {
-        //                 message: this.newMessage,
-        //                 user: this.username
-        //             });
-        //             this.newMessage = null;
-        //         },
-
-        //         addUser() {
-        //             this.ready = true;
-        //             socket.emit('joined', this.username)
-        //         }
-        //     },
-
-        // });
-
         return (
             <>
                 <p>Cevaaaa</p>
@@ -139,7 +49,7 @@ export default class Chat extends Component {
                             </div>
                             <h2 v-else>
                                 {/* { vue.data.username } */}
-                                </h2>
+                            </h2>
                             <div class="card bg-info" v-if="ready">
                                 <div class="card-header text-white">
                                     <h4>My Chat App <span class="float-right">
@@ -155,7 +65,7 @@ export default class Chat extends Component {
                                             {/* {vue.message.message} */}
                                             <small>:
                                                 {/* {vue.message.user} */}
-                                                </small>
+                                            </small>
                                         </span>
                                     </li>
                                 </ul>
@@ -172,6 +82,10 @@ export default class Chat extends Component {
                         </div>
                     </div>
                 </div >
+                {/* <MessengerCustomerChat
+                    pageId="1895382890692545"
+                    appId="215971755540323"
+                /> */}
             </>
         )
     }

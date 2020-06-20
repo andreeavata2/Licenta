@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
 
 import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
+import Feedback from "./Feedback";
 
 
 class Navbar extends Component {
@@ -39,6 +40,8 @@ class Navbar extends Component {
                                     </Link>
                                     {/* <span className="sr-only">(current)</span> */}
                                 </div>
+
+                                <Feedback />
 
                                 {isAuthenticated ? (
                                     <>
