@@ -6,6 +6,7 @@ import { logoutUser } from "../../actions/authActions";
 
 import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
 import Feedback from "./Feedback";
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 
 class Navbar extends Component {
@@ -26,6 +27,19 @@ class Navbar extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav ml-md-auto">
+
+
+                                <DropdownButton title="Dropdownxs">
+                                    <MenuItem href="#books">Books</MenuItem>
+                                    <MenuItem href="#podcasts">Podcasts</MenuItem>
+                                    <MenuItem href="#">Tech I Like</MenuItem>
+                                    <MenuItem href="#">About me</MenuItem>
+                                    <MenuItem href="#addBlog">Add a Blog</MenuItem>
+                                </DropdownButton>
+
+
+
+
                                 <div className="nav-item nav-link active">
                                     <Link
                                         to="/"

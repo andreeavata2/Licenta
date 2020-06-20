@@ -15,6 +15,7 @@ import face2 from "../../assets/img/faces/face_2.jpg";
 import face3 from "../../assets/img/faces/face_3.jpg";
 import Navbar from './Navbar';
 import feedbackReducers from '../../reducers/feedbackReducers';
+import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 class Landing extends Component {
     static propTypes = {
@@ -52,7 +53,7 @@ class Landing extends Component {
                                             <div className="title-area">
                                                 <h1 className="title-modern">License Management</h1>
                                                 <div className="separator line-separator">♦</div>
-                                                <h3>Probably the most useful site for organizing licenses!</h3>
+                                                <h3>The most useful site for organizing licenses!</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -78,9 +79,10 @@ class Landing extends Component {
                                 <div className="col-md-4">
                                     <div className="info-icon">
                                         <div className="icon text-danger">
-                                            <i className="pe-7s-graph1"></i>
+                                            {/* <i className="pe-7s-graph1"></i> */}
+                                            <MDBIcon icon="bell" style={{width: "auto"}} />
                                         </div>
-                                        <h3>Sales</h3>
+                                        <h3>Notifications</h3>
                                         <p className="description">We make our design perfect for you. Our adjustment turn our clothes into
                         your clothes.</p>
                                     </div>
@@ -88,20 +90,22 @@ class Landing extends Component {
                                 <div className="col-md-4">
                                     <div className="info-icon">
                                         <div className="icon text-danger">
-                                            <i className="pe-7s-note2"></i>
+                                            {/* <i className="pe-7s-note2"></i> */}
+                                            <MDBIcon icon="comments" style={{width: "auto"}}/>
                                         </div>
-                                        <h3>Content</h3>
+                                        <h3>Chat</h3>
                                         <p className="description">We create a persona regarding the multiple wardrobe accessories that we
                         provide..</p>
                                     </div>
                                 </div>
                                 <div className="col-md-4">
                                     <div className="info-icon">
-                                        <div>
-                                            <i className="fas fa-music"></i>
+                                        <div className="icon text-danger">
+                                            {/* <i className="fas fa-music"></i> */}
+                                            <MDBIcon icon="university" style={{width: "auto"}}/>
                                         </div>
 
-                                        <h3>Music</h3>
+                                        <h3>Students Management</h3>
                                         <p className="description">We like to present the world with our work, so we make sure we spread the
                         word regarding our clothes.</p>
                                     </div>
@@ -138,21 +142,23 @@ class Landing extends Component {
                                     <div className="row">
                                         <div className="col-md-10 col-md-offset-1">
                                             <div className="row">
-                                                {feedbacks.map((feedback, index) =>
-                                                    <div className="col-md-4" key={index}>
-                                                        <div className="card card-member">
-                                                            <div className="content" style={{ height: "400px" }}>
-                                                                <div className="avatar avatar-danger">
-                                                                    <img src={face1} />;
+                                                {feedbacks.reverse().map((feedback, index) =>
+                                                    index < 3 ? (
+                                                        <div className="col-md-4" key={index}>
+                                                            <div className="card card-member">
+                                                                <div className="content" style={{ height: "400px" }}>
+                                                                    <div className="avatar avatar-danger">
+                                                                        <img src={face1} />;
                                                                     </div>
-                                                                <div className="description">
-                                                                    <h3 className="title">{feedback.name}</h3>
-                                                                    <p className="small-text">Positive Feedback</p>
-                                                                    <p className="description">{feedback.message}</p>
+                                                                    <div className="description">
+                                                                        <h3 className="title">{feedback.name}</h3>
+                                                                        <p className="small-text">Positive Feedback</p>
+                                                                        <p className="description">{feedback.message}</p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    ) : (null)
                                                 )}
                                             </div>
                                         </div>
