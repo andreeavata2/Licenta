@@ -8,6 +8,32 @@ import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
 import Feedback from "./Feedback";
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap';
+import "./notificationButton.css";
+import $ from "jquery";
+
+$(document).ready(function () {
+    $(".profile .icon_wrap").click(function () {
+        $(this).parent().toggleClass("active");
+        $(".notifications").removeClass("active");
+    });
+
+    $(".notifications .icon_wrap").click(function () {
+        $(this).parent().toggleClass("active");
+        $(".profile").removeClass("active");
+    });
+
+    $(".show_all .link").click(function () {
+        $(".notifications").removeClass("active");
+        $(".popup").show();
+    });
+
+    $(".close").click(function () {
+        $(".popup").hide();
+    });
+});
+
 
 class Navbar extends Component {
     onLogoutClick = e => {
@@ -20,6 +46,7 @@ class Navbar extends Component {
         return (
             <>
                 <div className="total-navbar">
+
                     <nav className="navbar navbar-expand-lg navbar-light navbar-custom fixed">
                         <a className="navbar-brand" href="\">License Manager</a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,17 +54,56 @@ class Navbar extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav ml-md-auto">
+                                <div class="navbar_right  nav-link">
+                                    <div class="notifications" style={{ marginRight: "0px" }}>
+                                        <div class="icon_wrap"><i class="far fa-bell" style={{ fontSize: "20px" }}></i></div>
 
+                                        <div class="notification_dd">
+                                            <ul class="notification_ul">
+                                                <li class="starbucks success">
+                                                    <div class="notify_data">
+                                                        <div class="title">
+                                                            Lorem, ipsum dolor.
+                                                            </div>
+                                                        <div class="sub_title">
+                                                            Lorem ipsum dolor sit amet consectetur.
+                                                            </div>
+                                                    </div>
+                                                    <div class="notify_status">
+                                                        <p>Success</p>
+                                                    </div>
+                                                </li>
+                                                <li class="baskin_robbins failed">
+                                                    <div class="notify_data">
+                                                        <div class="title">
+                                                            Lorem, ipsum dolor.
+                                                            </div>
+                                                        <div class="sub_title">
+                                                            Lorem ipsum dolor sit amet consectetur.
+                                                            </div>
+                                                    </div>
+                                                    <div class="notify_status">
+                                                        <p>Failed</p>
+                                                    </div>
+                                                </li>
+                                                <li class="mcd success">
+                                                    <div class="notify_data">
+                                                        <div class="title">
+                                                            Lorem, ipsum dolor.
+                                                            </div>
+                                                        <div class="sub_title">
+                                                            Lorem ipsum dolor sit amet consectetur.
+                                                            </div>
+                                                    </div>
+                                                    <div class="notify_status">
+                                                        <p>Success</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
 
-                                <DropdownButton title="Dropdownxs">
-                                    <MenuItem href="#books">Books</MenuItem>
-                                    <MenuItem href="#podcasts">Podcasts</MenuItem>
-                                    <MenuItem href="#">Tech I Like</MenuItem>
-                                    <MenuItem href="#">About me</MenuItem>
-                                    <MenuItem href="#addBlog">Add a Blog</MenuItem>
-                                </DropdownButton>
-
-
+                                    </div>
+                                </div>
 
 
                                 <div className="nav-item nav-link active">
