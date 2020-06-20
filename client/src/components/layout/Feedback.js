@@ -1,22 +1,95 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addFeedback } from "../../actions/feedbackActions";
+
 import "../../assets/js/feedback";
 
-export default class Feedback extends Component {
+class Feedback extends Component {
+    constructor() {
+        super();
+        this.state = {
+            name: "",
+            email: "",
+            message: "",
+            errors: {}
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    onSubmit = e => {
+        e.preventDefault();
+
+        const newFeedback = {
+            name: this.state.name,
+            email: this.state.email,
+            message: this.state.message,
+        };
+        console.log(newFeedback);
+
+        this.props.addFeedback(newFeedback, this.props.history);
+        window.location.reload(false); 
+    };
+
     render() {
+        const { errors } = this.state;
         return (
             <div id="feedback">
-                <div id="feedback-form" style={{ display: "none" }} class="col">
-                    <form method="POST" action="/feedback" class="form panel-body" role="form">
-                    <div class="form-group">
-                            <input class="form-control" name="name" autofocus placeholder="Your name" type="text" />
+                <div id="feedback-form" style={{ display: "none" }} className="col">
+                    <form control="" className="form panel-body" noValidate onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <input
+                                onChange={this.onChange}
+                                value={this.state.name}
+                                error={errors.name}
+                                id="name"
+                                type="text"
+                                name="name" autoFocus
+                                className="form-control"
+                                placeholder="Your name"
+                            />
+                            <span className="red-text">{errors.name}</span>
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" name="email" autofocus placeholder="Your e-mail" type="email" />
+                        <div className="form-group">
+                            <input
+                                onChange={this.onChange}
+                                value={this.state.email}
+                                error={errors.email}
+                                id="email"
+                                className="form-control"
+                                name="email" autoFocus
+                                placeholder="Your e-mail"
+                                type="email"
+                            />
+                            <span className="red-text">{errors.email}</span>
                         </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="body" required placeholder="Please write your feedback here..." rows="5"></textarea>
+                        <div className="form-group">
+                            <textarea
+                                onChange={this.onChange}
+                                value={this.state.message}
+                                error={errors.message}
+                                id="message"
+                                className="form-control"
+                                name="body" required
+                                placeholder="Please write your feedback here..."
+                                rows="5"
+                                maxLength="300"
+                            />
+                            <span className="red-text">{errors.message}</span>
                         </div>
-                        <button class="btn btn-primary pull-right" type="submit">Send</button>
+                        <button className="btn btn-primary pull-right" type="submit">Send</button>
                     </form>
                 </div>
                 <div id="feedback-tab">Feedback</div>
@@ -24,3 +97,18 @@ export default class Feedback extends Component {
         )
     }
 }
+
+
+Feedback.propTypes = {
+    addFeedback: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { addFeedback }
+)(withRouter(Feedback));

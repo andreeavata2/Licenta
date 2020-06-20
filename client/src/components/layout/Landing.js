@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import "../../assets/css/bootstrap.css";
 import "../../assets/css/homePage.css";
-// import 'font-awesome/css/font-awesome.min.css';
 import "../../../node_modules/font-awesome/css/font-awesome.min.css"
-// import FontAwesome from 'react-fontawesome/font-awesome/css/font-awesome.min.css';
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { getFeedbacksList } from "../../actions/feedbackActions";
 
 import imageBackground1 from "../../assets/img/teacher-and-student.jpg";
 import imageBackground2 from "../../assets/img/header-3.jpg";
@@ -11,9 +14,21 @@ import face1 from "../../assets/img/faces/face_1.jpg";
 import face2 from "../../assets/img/faces/face_2.jpg";
 import face3 from "../../assets/img/faces/face_3.jpg";
 import Navbar from './Navbar';
+import feedbackReducers from '../../reducers/feedbackReducers';
 
 class Landing extends Component {
+    static propTypes = {
+        getFeedbacksList: PropTypes.func.isRequired,
+        feedbacks: PropTypes.object.isRequired,
+    };
+
+    componentDidMount() {
+        this.props.getFeedbacksList();
+    }
+
     render() {
+        const { feedbacks } = this.props.feedbacks;
+        var face = "";
         return (
             <>
                 <Navbar />
@@ -56,6 +71,7 @@ class Landing extends Component {
                                     <div className="separator separator-danger">✻</div>
                                     <p className="description">We promise you a new look and more importantly, a new attitude. We build that
                     by getting to know you, your needs and creating the best looking clothes.</p>
+
                                 </div>
                             </div>
                             <div className="row">
@@ -81,9 +97,7 @@ class Landing extends Component {
                                 </div>
                                 <div className="col-md-4">
                                     <div className="info-icon">
-                                        {/* <div className="icon text-danger"> */}
                                         <div>
-                                            {/* <i className="pe-7s-music"></i> */}
                                             <i className="fas fa-music"></i>
                                         </div>
 
@@ -112,77 +126,34 @@ class Landing extends Component {
                                 <div className="content">
                                     <div className="row">
                                         <div className="title-area">
-                                            <h2>Who We Are</h2>
+                                            <h2>Our Feedbacks</h2>
                                             <div className="separator separator-danger">✻</div>
                                             <p className="description">We are a team that has thought of making your life easier when it
                             comes to preparing the license and presenting it.</p>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div className="team">
-                                        <div className="row">
-                                            <div className="col-md-10 col-md-offset-1">
-                                                <div className="row">
-                                                    <div className="col-md-4">
+                                <div className="team">
+                                    <div className="row">
+                                        <div className="col-md-10 col-md-offset-1">
+                                            <div className="row">
+                                                {feedbacks.map((feedback, index) =>
+                                                    <div className="col-md-4" key={index}>
                                                         <div className="card card-member">
-                                                            <div className="content">
+                                                            <div className="content" style={{ height: "400px" }}>
                                                                 <div className="avatar avatar-danger">
-                                                                    {/* <img alt="..." className="img-circle"
-                                                                        src= "../../assets/img/faces/face_1.jpg" /> */}
                                                                     <img src={face1} />;
-
-                                                                </div>
+                                                                    </div>
                                                                 <div className="description">
-                                                                    <h3 className="title">Tina</h3>
-                                                                    <p className="small-text">CEO / Co-Founder</p>
-                                                                    <p className="description">I miss the old Kanye I gotta say at that time
-                                                                    I’d like to meet Kanye And I promise the power is in the people
-                                                                    and I will use the power given by the people to bring everything
-                                                    I have back to the people.</p>
+                                                                    <h3 className="title">{feedback.name}</h3>
+                                                                    <p className="small-text">Positive Feedback</p>
+                                                                    <p className="description">{feedback.message}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-4">
-                                                        <div className="card card-member">
-                                                            <div className="content">
-                                                                <div className="avatar avatar-danger">
-                                                                    {/* <img alt="..." className="img-circle"
-                                                                        src="assets/img/faces/face_4.jpg" /> */}
-                                                                    <img src={face2} />;
-                                                                </div>
-                                                                <div className="description">
-                                                                    <h3 className="title">Andrew</h3>
-                                                                    <p className="small-text">Product Designer</p>
-                                                                    <p className="description">I miss the old Kanye I gotta say at that time
-                                                                    I’d like to meet Kanye And I promise the power is in the people
-                                                                    and I will use the power given by the people to bring everything
-                                                    I have back to the people.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-4">
-                                                        <div className="card card-member">
-                                                            <div className="content">
-                                                                <div className="avatar avatar-danger">
-                                                                    {/* <img alt="..." className="img-circle"
-                                                                        src="assets/img/faces/face_3.jpg" /> */}
-                                                                    <img src={face3} />;
-                                                                </div>
-                                                                <div className="description">
-                                                                    <h3 className="title">Michelle</h3>
-                                                                    <p className="small-text">Marketing Hacker</p>
-                                                                    <p className="description">I miss the old Kanye I gotta say at that time
-                                                                    I’d like to meet Kanye And I promise the power is in the people
-                                                                    and I will use the power given by the people to bring everything
-                                                    I have back to the people.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -215,7 +186,6 @@ class Landing extends Component {
                     {/* <!-- <footer className="footer" data-color="black"> --> */}
                     <footer className="footer">
                         <div className="container">
-                            {/* <hr> */}
                             <div className="copyright">
                                 Copyright © 2020 UAIC - Elaboration Of The Bachelor's Thesis - Designed by Vatamanelu Andreea
                         </div>
@@ -229,4 +199,8 @@ class Landing extends Component {
     }
 }
 
-export default Landing;
+const mapStateToProps = (state) => ({
+    feedbacks: state.feedbacks
+});
+
+export default withRouter(connect(mapStateToProps, { getFeedbacksList })(Landing));

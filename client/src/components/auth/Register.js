@@ -153,7 +153,7 @@ class Register extends Component {
                                             <span className="red-text">{errors.password2}</span>
                                         </div>
                                         <div className="col s12">
-                                            <select class="browser-default custom-select"
+                                            <select className="browser-default custom-select"
                                                 onChange={this.onChange}
                                                 value={this.state.typeUser}
                                                 error={errors.typeUser}
@@ -162,7 +162,7 @@ class Register extends Component {
                                                 name="name"
                                                 className="form__input"
                                             >
-                                                <option selected>Type of user</option>
+                                                <option defaultValue>Type of user</option>
                                                 <option value="student">Student</option>
                                                 <option value="professor">Professor</option>
                                             </select>
