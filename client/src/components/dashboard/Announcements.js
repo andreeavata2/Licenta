@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import './Dashboard.css'
-import { getStudentList } from "../../actions/studentActions";
+import { getAnnouncementsList } from "../../actions/announcementAction";
 
-import { Row, Col, Table, Grid} from "react-bootstrap";
+import { Row, Col, Table, Grid } from "react-bootstrap";
 // import { Grid } from "react-bootstrap";
 import Card from "./card/Card";
 import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
@@ -14,16 +14,18 @@ import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 class Announcements extends Component {
     static propTypes = {
-        getStudentList: PropTypes.func.isRequired,
-        student: PropTypes.object.isRequired,
+        getAnnouncementsList: PropTypes.func.isRequired,
+        announcements: PropTypes.object.isRequired,
+        auth: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
-        this.props.getStudentList();
+        this.props.getAnnouncementsList();
     }
 
     render() {
-        const { students } = this.props.student;
+        const { announcements } = this.props.announcements;
+        const { user } = this.props.auth;
         return (
             <>
                 <div id="content" className="p-4 p-md-5">
@@ -32,8 +34,8 @@ class Announcements extends Component {
                             <Row>
                                 <Col md={12}>
                                     <Card
-                                        title="Students List"
-                                        category="Here is a list with all my students"
+                                        title="Announcements Posts"
+                                        category="Here is a list with all announcements"
                                         ctTableFullWidth
                                         ctTableResponsive
                                         content={
@@ -41,20 +43,39 @@ class Announcements extends Component {
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
+                                                        <th scope="col">Title</th>
                                                         <th scope="col">Name</th>
-                                                        <th scope="col">Email</th>
-                                                        <th scope="col"></th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Message</th>
+                                                        <th scope="col">Type</th>
+                                                        {user.typeUser === "professor" ? (
+                                                            <th scope="col"></th>
+                                                        ) : (null)}
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {students.map((studentt, index) =>
+                                                    {announcements.map((announcements, index) =>
                                                         <tr key={index}>
                                                             <td>
                                                                 {index + 1}
                                                             </td>
-                                                            <td>{studentt.name}</td>
-                                                            <td>{studentt.email}</td>
-                                                            <td> <MDBIcon icon="trash" /> </td>
+                                                            <td>{announcements.title}</td>
+                                                            <td>{announcements.name}</td>
+                                                            <td>{announcements.date}</td>
+                                                            <td>{announcements.message}</td>
+                                                            {announcements.typeAnnouncement == "Important" ? (<td style={{ color: "red" }}>
+                                                                {announcements.typeAnnouncement}
+                                                            </td>
+                                                            ) : (announcements.typeAnnouncement == "Alert" ? (
+                                                                <td style={{ color: "orange" }}>{announcements.typeAnnouncement}</td>
+                                                            ) : (<td style={{ color: "green" }}>{announcements.typeAnnouncement}</td>))
+                                                            }
+
+                                                            {user.typeUser === "professor" ? (
+                                                                <td> <MDBIcon icon="trash" /> </td>
+                                                            ) : (null)}
+
                                                         </tr>
                                                     )}
                                                 </tbody>
@@ -75,7 +96,8 @@ class Announcements extends Component {
 
 
 const mapStateToProps = (state) => ({
-    student: state.student
+    announcements: state.announcements,
+    auth: state.auth,
 });
 
-export default withRouter(connect(mapStateToProps, { getStudentList })(Announcements));
+export default withRouter(connect(mapStateToProps, { getAnnouncementsList })(Announcements));

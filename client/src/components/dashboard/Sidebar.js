@@ -42,10 +42,11 @@ class Sidebar extends Component {
                                         </li>
                                     </>
                                 ) : (
-                                        <li>
-                                            <a href="/dashboard/allAnnouncement">Announcements posts</a>
-                                        </li>
+                                        null
                                     )}
+                                <li>
+                                    <a href="/dashboard/allAnnouncement">Announcements posts</a>
+                                </li>
                                 <li>
                                     <a href="/dashboard/userProfile">User Profile</a>
                                 </li>

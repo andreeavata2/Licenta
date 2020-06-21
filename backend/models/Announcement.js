@@ -21,7 +21,7 @@ const AnnouncementSchema = new Schema({
   },
   typeAnnouncement: {
     type: String,
-    required:  true
+    // required:  true
   }
 });
 module.exports = Announcement = mongoose.model("announcements", AnnouncementSchema);
