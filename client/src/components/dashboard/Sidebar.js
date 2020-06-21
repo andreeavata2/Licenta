@@ -33,22 +33,30 @@ class Sidebar extends Component {
                                     <a href="/dashboard">About</a>
                                 </li>
                                 {user.typeUser === "professor" ? (
-                                    <li>
-                                        <a href="/dashboard/table">List with my students</a>
-                                    </li>
-                                ) : (null)}
+                                    <>
+                                        <li>
+                                            <a href="/dashboard/table">List with my students</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/addAnnouncement">Add Announcement</a>
+                                        </li>
+                                    </>
+                                ) : (
+                                        <li>
+                                            <a href="/dashboard/allAnnouncement">Announcements posts</a>
+                                        </li>
+                                    )}
                                 <li>
                                     <a href="/dashboard/userProfile">User Profile</a>
                                 </li>
-                                <li>
-                                    <a href="/dashboard">Contact</a>
-                                </li>
+
                                 <li>
                                     <Link
                                         to='/'
                                         onClick={this.onLogoutClick}
                                     >
-                                        <i className="fa fa-sign-out pull-right"></i>
+                                        {/* <i className="fa fa-sign-out pull-right"></i> */}
+                                        <MDBIcon icon="sign-out-alt" className="pull-right" />
                                     Log Out
                                 </Link>
                                 </li>

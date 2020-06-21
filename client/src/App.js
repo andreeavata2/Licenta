@@ -19,10 +19,12 @@ import StudentTable from "./components/dashboard/Table";
 import UserProfile from './components/dashboard/UserProfile';
 import MainDashboard from "./components/dashboard/MainDashboard";
 import Chat from "./components/chat/Chat";
+import Sidebar from './components/dashboard/Sidebar';
+import AddAnnouncement from "./components/dashboard/AddAnnouncement";
+import Announcements from "./components/dashboard/Announcements";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table } from 'react-bootstrap';
-import Sidebar from './components/dashboard/Sidebar';
 
 
 // Check for token to keep user logged in
@@ -78,6 +80,18 @@ class App extends Component {
                 <div className="wrapper d-flex align-items-stretch">
                   <Sidebar />
                   <UserProfile />
+                </div>
+              </PrivateRoute>
+              <PrivateRoute exact path="/dashboard/addAnnouncement">
+                <div className="wrapper d-flex align-items-stretch">
+                  <Sidebar />
+                  <AddAnnouncement />
+                </div>
+              </PrivateRoute>
+              <PrivateRoute exact path="/dashboard/allAnnouncement">
+                <div className="wrapper d-flex align-items-stretch">
+                  <Sidebar />
+                  <Announcements />
                 </div>
               </PrivateRoute>
               </Switch>
