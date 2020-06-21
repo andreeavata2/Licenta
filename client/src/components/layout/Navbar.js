@@ -7,6 +7,8 @@ import { logoutUser } from "../../actions/authActions";
 import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
 import Feedback from "./Feedback";
 import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { getAnnouncementsList } from "../../actions/announcementAction";
+
 
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap';
@@ -25,11 +27,15 @@ $(document).ready(function () {
 
 
 class Navbar extends Component {
+    componentDidMount() {
+        this.props.getAnnouncementsList();
+    }
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
     };
     render() {
+        const { announcements } = this.props.announcements;
         const { user } = this.props.auth;
         const isAuthenticated = this.props.auth.isAuthenticated;
         return (
@@ -63,47 +69,39 @@ class Navbar extends Component {
                                                 </div>
 
                                                 <div className="notification_dd">
-                                                    <ul className="notification_ul">
-                                                        <li className="starbucks success">
-                                                            <div className="notify_data">
-                                                                <div className="title">
-                                                                    Lorem, ipsum dolor.
-                                                            </div>
-                                                                <div className="sub_title">
-                                                                    Lorem ipsum dolor sit amet consectetur.
-                                                            </div>
-                                                            </div>
-                                                            <div className="notify_status">
-                                                                <p>Success</p>
-                                                            </div>
-                                                        </li>
-                                                        <li className="baskin_robbins failed">
-                                                            <div className="notify_data">
-                                                                <div className="title">
-                                                                    Lorem, ipsum dolor.
-                                                            </div>
-                                                                <div className="sub_title">
-                                                                    Lorem ipsum dolor sit amet consectetur.
-                                                            </div>
-                                                            </div>
-                                                            <div className="notify_status">
-                                                                <p>Failed</p>
-                                                            </div>
-                                                        </li>
-                                                        <li className="mcd success">
-                                                            <div className="notify_data">
-                                                                <div className="title">
-                                                                    Lorem, ipsum dolor.
-                                                            </div>
-                                                                <div className="sub_title">
-                                                                    Lorem ipsum dolor sit amet consectetur.
-                                                            </div>
-                                                            </div>
-                                                            <div className="notify_status">
-                                                                <p>Success</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                                    {announcements.reverse().map((announcements, index) =>
+                                                        <>
+                                                            <ul key={index} className="notification_ul">
+                                                                <li>
+                                                                    <div className="notify_data">
+                                                                        <div className="title">
+                                                                            {announcements.title}
+                                                                        </div>
+                                                                        <div className="sub_title">
+                                                                            {announcements.message}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="notify_status">
+                                                                        {announcements.typeAnnouncement == "Important" ? (<p style={{ color: "red" }}>
+                                                                            {announcements.typeAnnouncement}
+                                                                        </p>
+                                                                        ) : (announcements.typeAnnouncement == "Alert" ? (
+                                                                            <p style={{ color: "orange" }}>{announcements.typeAnnouncement}</p>
+                                                                        ) : (<p style={{ color: "green" }}>{announcements.typeAnnouncement}</p>))
+                                                                        }
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </>
+                                                    )}
+                                                    <div class="footer bg-dark text-center">
+                                                        <Link
+                                                            to="/dashboard/allAnnouncement"
+                                                            className="text-light"
+                                                        >
+                                                            View All
+                                                        </Link>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -206,14 +204,17 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
+    getAnnouncementsList: PropTypes.func.isRequired,
+    announcements: PropTypes.object.isRequired,
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
+    announcements: state.announcements,
 });
 export default connect(
     mapStateToProps,
-    { logoutUser }
+    { logoutUser, getAnnouncementsList }
 )(Navbar);

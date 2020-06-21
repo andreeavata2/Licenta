@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ANNOUNCEMENTS, GET_ERRORS } from "./types";
+import { GET_ANNOUNCEMENTS, GET_ERRORS, DELETE_ANNOUNCEMENTS } from "./types";
 
 //get all announcements
 
@@ -20,6 +20,18 @@ export const addAnnouncement = (announcementData) => dispatch => {
             dispatch({
                 type: GET_ERRORS,
                 payload: err.response.data
+            })
+        );
+};
+
+// Delete announcement
+export const deleteAnnouncement = (announcementData) => dispatch => {
+    axios
+        .delete("http://localhost:5000/api/announcement/delete", announcementData)
+        .then(res =>
+            dispatch({
+                type: DELETE_ANNOUNCEMENTS,
+                payload: res.data.data
             })
         );
 };

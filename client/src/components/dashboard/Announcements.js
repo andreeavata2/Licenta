@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import './Dashboard.css'
-import { getAnnouncementsList } from "../../actions/announcementAction";
 
 import { Row, Col, Table, Grid } from "react-bootstrap";
 // import { Grid } from "react-bootstrap";
 import Card from "./card/Card";
 import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
 // import "./style.css";
+
+import { getAnnouncementsList } from "../../actions/announcementAction";
+import { deleteAnnouncement } from './../../actions/announcementAction';
 
 class Announcements extends Component {
     static propTypes = {
@@ -22,6 +24,11 @@ class Announcements extends Component {
     componentDidMount() {
         this.props.getAnnouncementsList();
     }
+
+    onDelete(id) {
+        this.props.deleteAnnouncement(id);
+        // window.location.reload(false);
+    };
 
     render() {
         const { announcements } = this.props.announcements;
@@ -55,7 +62,7 @@ class Announcements extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {announcements.map((announcements, index) =>
+                                                    {announcements.reverse().map((announcements, index) =>
                                                         <tr key={index}>
                                                             <td>
                                                                 {index + 1}
@@ -73,7 +80,14 @@ class Announcements extends Component {
                                                             }
 
                                                             {user.typeUser === "professor" ? (
-                                                                <td> <MDBIcon icon="trash" /> </td>
+                                                                <td>
+                                                                    <button style={{ width: "auto", margin: "0", border: "none" }}
+                                                                        // onDelete={this.onDelete(announcements._id)}
+                                                                        onClick={() => this.props.deleteAnnouncement(announcements._id)}
+                                                                    >
+                                                                        <MDBIcon icon="trash" />
+                                                                    </button>
+                                                                </td>
                                                             ) : (null)}
 
                                                         </tr>
@@ -96,8 +110,9 @@ class Announcements extends Component {
 
 
 const mapStateToProps = (state) => ({
+    deleteAnnouncement: PropTypes.func.isRequired,
     announcements: state.announcements,
     auth: state.auth,
 });
 
-export default withRouter(connect(mapStateToProps, { getAnnouncementsList })(Announcements));
+export default withRouter(connect(mapStateToProps, { getAnnouncementsList, deleteAnnouncement })(Announcements));
