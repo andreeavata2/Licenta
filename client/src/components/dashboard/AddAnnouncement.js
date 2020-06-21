@@ -46,7 +46,7 @@ class AddAnnouncement extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
-    onSubmit = e => {
+    onSubmit = async(e) => {
         e.preventDefault();
 
         const newAnnouncement = {
@@ -58,8 +58,9 @@ class AddAnnouncement extends Component {
         };
         console.log(newAnnouncement);
 
-        this.props.addAnnouncement(newAnnouncement, this.props.history);
-        window.location.reload(false);
+        await this.props.addAnnouncement(newAnnouncement, this.props.history);
+        // window.location.reload(false);
+        this.props.history.push('/dashboard/allAnnouncement');
     };
 
     render() {

@@ -28,7 +28,7 @@ module.exports.addNewAnnouncement = async (req, res) => {
 };
 
 module.exports.deleteAnnouncement = async (req, res) => {
-    const id = req.body.id;
+    const id = req.params.id;
     var announcement;
 
     try {
@@ -42,10 +42,10 @@ module.exports.deleteAnnouncement = async (req, res) => {
             const removedAnnouncement = await Announcement.findByIdAndRemove(id);
             return res.status(200).json(`The announcement posted by ${announcement.name} was successfully deleted`);
         } catch (error) {
-            return res.status(404).json("error at delete");
+            return res.status(404).json({err:"error at delete"});
 
         }
     } else {
-        return res.status(404).json("Feedback not found in DB");
+        return res.status(404).json({err:"Announcement not found in DB"});
     }
 }

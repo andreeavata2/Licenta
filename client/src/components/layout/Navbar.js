@@ -59,10 +59,11 @@ class Navbar extends Component {
                                                 <div className="icon_wrap">
                                                     <i className="far fa-bell" style={{ fontSize: "20px" }}></i>
                                                     <span className="badge" style={{
+                                                        fontSize: "10px",
                                                         position: "absolute",
-                                                        top: "-10px",
+                                                        top: "2px",
                                                         right: "-10px",
-                                                        padding: "0px",
+                                                        padding: "3px",
                                                         background: "red",
                                                         color: "white"
                                                     }}>3</span>

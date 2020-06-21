@@ -27,11 +27,14 @@ export const addAnnouncement = (announcementData) => dispatch => {
 // Delete announcement
 export const deleteAnnouncement = (announcementData) => dispatch => {
     axios
-        .delete("http://localhost:5000/api/announcement/delete", announcementData)
-        .then(res =>
-            dispatch({
+        .delete(`http://localhost:5000/api/announcement/${announcementData}`)
+        .then(res => {
+            dispatch(getAnnouncementsList())
+            return dispatch({
                 type: DELETE_ANNOUNCEMENTS,
                 payload: res.data.data
             })
+        }
+
         );
 };

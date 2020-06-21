@@ -25,9 +25,10 @@ class Announcements extends Component {
         this.props.getAnnouncementsList();
     }
 
-    onDelete(id) {
-        this.props.deleteAnnouncement(id);
-        // window.location.reload(false);
+    onDelete = async(id) => {
+        await this.props.deleteAnnouncement(id);
+        await this.props.getAnnouncementsList();
+
     };
 
     render() {
@@ -83,7 +84,7 @@ class Announcements extends Component {
                                                                 <td>
                                                                     <button style={{ width: "auto", margin: "0", border: "none" }}
                                                                         // onDelete={this.onDelete(announcements._id)}
-                                                                        onClick={() => this.props.deleteAnnouncement(announcements._id)}
+                                                                        onClick={() => this.onDelete(announcements._id)}
                                                                     >
                                                                         <MDBIcon icon="trash" />
                                                                     </button>

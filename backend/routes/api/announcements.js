@@ -23,7 +23,7 @@ router.post("/addAnnouncement", async (req, res) => {
 
 // route POST api/announcement/delete
 // delete a student from id
-router.delete("/delete", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     AnnouncementController.deleteAnnouncement(req, res);
     
 })
