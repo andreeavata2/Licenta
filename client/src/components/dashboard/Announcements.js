@@ -1,14 +1,13 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { withRouter } from "react-router-dom";
 import './Dashboard.css'
 
 import { Row, Col, Table, Grid } from "react-bootstrap";
 // import { Grid } from "react-bootstrap";
 import Card from "./card/Card";
-import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
+import { MDBIcon } from "mdbreact";
 // import "./style.css";
 
 import { getAnnouncementsList } from "../../actions/announcementAction";
@@ -72,10 +71,10 @@ class Announcements extends Component {
                                                             <td>{announcements.name}</td>
                                                             <td>{announcements.date}</td>
                                                             <td>{announcements.message}</td>
-                                                            {announcements.typeAnnouncement == "Important" ? (<td style={{ color: "red" }}>
+                                                            {announcements.typeAnnouncement === "Important" ? (<td style={{ color: "red" }}>
                                                                 {announcements.typeAnnouncement}
                                                             </td>
-                                                            ) : (announcements.typeAnnouncement == "Alert" ? (
+                                                            ) : (announcements.typeAnnouncement === "Alert" ? (
                                                                 <td style={{ color: "orange" }}>{announcements.typeAnnouncement}</td>
                                                             ) : (<td style={{ color: "green" }}>{announcements.typeAnnouncement}</td>))
                                                             }

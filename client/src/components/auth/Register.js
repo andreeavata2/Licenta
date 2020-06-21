@@ -15,6 +15,7 @@ class Register extends Component {
             password: "",
             password2: "",
             typeUser: "",
+            licenseTeacher: "",
             errors: {}
         };
     }
@@ -46,7 +47,8 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password,
             password2: this.state.password2,
-            typeUser: this.state.typeUser
+            typeUser: this.state.typeUser,
+            licenseTeacher: this.state.licenseTeacher
         };
         console.log(newUser);
 
@@ -159,7 +161,7 @@ class Register extends Component {
                                                 error={errors.typeUser}
                                                 id="typeUser"
                                                 type="text"
-                                                name="name"
+                                                name="typeUser"
                                                 className="form__input"
                                             >
                                                 <option defaultValue>Type of user</option>
@@ -168,6 +170,26 @@ class Register extends Component {
                                             </select>
                                             <span className="red-text">{errors.typeUser}</span>
                                         </div>
+
+                                        {this.state.typeUser === "student" ? (
+                                            <div className="col s12">
+                                                <select className="browser-default custom-select"
+                                                    onChange={this.onChange}
+                                                    value={this.state.licenseTeacher}
+                                                    error={errors.licenseTeacher}
+                                                    id="licenseTeacher"
+                                                    type="text"
+                                                    name="licenseTeacher"
+                                                    className="form__input"
+                                                >
+                                                    <option defaultValue>License Teacher</option>
+                                                    <option value="Alex Moruz">Alex Moruz</option>
+                                                    <option value="Adrian Iftene">Adrian Iftene</option>
+                                                    <option value="Florin Olariu">Florin Olariu</option>
+                                                </select>
+                                                <span className="red-text">{errors.typeUser}</span>
+                                            </div>
+                                        ) : (null)}
 
                                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                             <button

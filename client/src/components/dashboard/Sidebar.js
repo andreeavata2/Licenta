@@ -1,14 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link, withRouter, useHistory, Redirect } from "react-router-dom";
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { Link, withRouter } from "react-router-dom";
 import './Dashboard.css'
-import { getStudentList } from "../../actions/studentActions";
 
 import { logoutUser } from "../../actions/authActions";
-import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
-import { browserHistory } from 'react-router'
+import { MDBIcon } from "mdbreact";
 
 
 import "./style.css";

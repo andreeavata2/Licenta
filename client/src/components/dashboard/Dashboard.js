@@ -1,16 +1,12 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { withRouter } from "react-router-dom";
 import './Dashboard.css'
 import { getStudentList } from "../../actions/studentActions";
 
 import "./style.css";
 import Sidebar from "./Sidebar";
-import StudentTable from "./Table";
-import UserProfile from './UserProfile';
 
 class Dashboard extends Component {
     static propTypes = {

@@ -14,7 +14,7 @@ module.exports.getAnnouncementsList = async res => {
 module.exports.addNewAnnouncement = async (req, res) => {
     const newAnnouncement = new Announcement({
         title: req.body.title,
-        name: req.body.name,
+        email: req.body.email,
         date: req.body.date,
         message: req.body.message,
         typeAnnouncement: req.body.typeAnnouncement

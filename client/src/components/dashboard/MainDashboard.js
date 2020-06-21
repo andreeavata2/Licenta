@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { render } from '@testing-library/react';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter} from "react-router-dom";
@@ -10,7 +9,7 @@ class MainDashboard extends Component {
         return (
             <div id="content" className="p-4 p-md-5">
                 <div className="container dashboard">
-                    {user.typeUser == "student" ?
+                    {user.typeUser === "student" ?
                         (
                             <>
                                 <h2> Hi, {user.name}</h2>

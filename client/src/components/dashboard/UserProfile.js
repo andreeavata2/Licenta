@@ -2,21 +2,15 @@ import React, { Component } from "react";
 import {
     Grid,
     Row,
-    Col,
-    FormGroup,
-    FormControl,
-    NavDropdown,
-    MenuItem
+    Col
 } from "react-bootstrap";
-import { FormSelect } from "shards-react";
 
 import { Card } from "./card/Card";
 import { FormInputs } from "./FormInputs/FormInputs";
-import { UserCard } from "./UserCard/UserCard";
 import Button from "./CustomButton/CustomButton";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -72,25 +66,19 @@ class UserProfile extends Component {
                                                 ]}
                                             />
 
-                                            <Col md={14} className="form-group">
-                                                <label htmlFor="feInputState" style={{
-                                                    "textAlign": "left",
-                                                    "fontSize": "12px",
-                                                    "marginBottom": "5px",
-                                                    "textTransform": "uppercase",
-                                                    "color": "#9a9a9a",
-                                                    "display": "inline-block",
-                                                    "maxWidth": "100%"
-                                                }}
-                                                >License Teacher</label>
-                                                <FormSelect id="feInputState">
-                                                    <option>Choose...</option>
-                                                    <option selected>Alex Moruz</option>
-                                                    <option>Florin Olariu</option>
-                                                    <option>Adrian Iftene</option>
 
-                                                </FormSelect>
-                                            </Col>
+                                            <FormInputs
+                                                ncols={["col-md-12"]}
+                                                properties={[
+                                                    {
+                                                        label: "License Teacher (disabled)",
+                                                        type: "text",
+                                                        bsClass: "form-control",
+                                                        defaultValue: user.licenseTeacher,
+                                                        disabled: true
+                                                    }
+                                                ]}
+                                            />
                                             <Button bsStyle="info" pullRight fill type="submit" style={{ width: "auto" }}>
                                                 Update Profile
                                             </Button>

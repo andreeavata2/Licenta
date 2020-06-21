@@ -2,17 +2,10 @@ import React, { Component } from "react";
 import {
     Grid,
     Row,
-    Col,
-    FormGroup,
-    FormControl,
-    NavDropdown,
-    MenuItem
+    Col
 } from "react-bootstrap";
-import { FormSelect } from "shards-react";
 
 import { Card } from "./card/Card";
-import { FormInputs } from "./FormInputs/FormInputs";
-import { UserCard } from "./UserCard/UserCard";
 import Button from "./CustomButton/CustomButton";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -26,7 +19,7 @@ class AddAnnouncement extends Component {
         super();
         this.state = {
             title: "",
-            name: "",
+            email: "",
             date: "",
             message: "",
             typeAnnouncement: "",
@@ -51,7 +44,7 @@ class AddAnnouncement extends Component {
 
         const newAnnouncement = {
             title: this.state.title,
-            name: this.state.name,
+            email: this.state.email,
             date: this.state.date,
             message: this.state.message,
             typeAnnouncement: this.state.typeAnnouncement
@@ -65,7 +58,9 @@ class AddAnnouncement extends Component {
 
     render() {
         const { errors } = this.state;
-        // const { user } = this.state.auth;
+        const { user } = this.props.auth;
+        this.state.email = user.email;
+
         return (
             <div id="content" className="p-4 p-md-5">
                 <div className="container dashboard">
@@ -77,41 +72,41 @@ class AddAnnouncement extends Component {
                                     content={
                                         <form control="" noValidate onSubmit={this.onSubmit}>
                                             <div className="form-group">
-                                                <input className="col-md-12"
+                                                <input className="col-md-12 form-control"
                                                     onChange={this.onChange}
                                                     value={this.state.title}
                                                     error={errors.title}
                                                     id="title"
                                                     type="text"
                                                     name="title" autoFocus
-                                                    className="form-control"
+                                                    // className="form-control"
                                                     placeholder="Announcement title"
                                                 />
                                                 <span className="red-text">{errors.title}</span>
                                             </div>
 
                                             <div className="form-group">
-                                                <input className="col-md-5"
+                                                <input className="col-md-5 form-control"
                                                     onChange={this.onChange}
-                                                    value={this.state.name}
-                                                    error={errors.name}
-                                                    id="name"
-                                                    name="name" autoFocus
-                                                    className="form-control"
-                                                    placeholder="Ful name"
+                                                    value={user.email}
+                                                    error={errors.email}
+                                                    id="email"
+                                                    name="email" autoFocus
+                                                    // className="form-control"
+                                                    placeholder= "Email"
                                                 />
-                                                <span className="red-text">{errors.name}</span>
+                                                <span className="red-text">{errors.email}</span>
                                             </div>
 
                                             <div className="form-group">
-                                                <input className="col-md-7"
+                                                <input className="col-md-7 form-control"
                                                     onChange={this.onChange}
                                                     value={this.state.date}
                                                     error={errors.date}
                                                     type="date"
                                                     id="date"
                                                     name="date" autoFocus
-                                                    className="form-control"
+                                                    // className="form-control"
                                                     placeholder="Date"
                                                 />
                                                 <span className="red-text">{errors.date}</span>
@@ -138,7 +133,6 @@ class AddAnnouncement extends Component {
                                                     name="typeAnnouncement"
                                                     id="typeAnnouncement"
                                                     name="typeAnnouncement" autoFocus
-                                                    // form="carform"
                                                     className="form-control"
                                                 >
                                                     <option>Type of Announcement</option>

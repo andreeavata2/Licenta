@@ -4,9 +4,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
 
-import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
+import { MDBIcon } from "mdbreact";
 import Feedback from "./Feedback";
-import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { getAnnouncementsList } from "../../actions/announcementAction";
 
 
@@ -53,61 +52,7 @@ class Navbar extends Component {
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav ml-md-auto">
                                 <ul className="nav navbar-nav navbar-right navbar-uppercase">
-                                    <li>
-                                        <div className="navbar_right  nav-link">
-                                            <div className="notifications" style={{ marginRight: "0px" }}>
-                                                <div className="icon_wrap">
-                                                    <i className="far fa-bell" style={{ fontSize: "20px" }}></i>
-                                                    <span className="badge" style={{
-                                                        fontSize: "10px",
-                                                        position: "absolute",
-                                                        top: "2px",
-                                                        right: "-10px",
-                                                        padding: "3px",
-                                                        background: "red",
-                                                        color: "white"
-                                                    }}>3</span>
-                                                </div>
 
-                                                <div className="notification_dd">
-                                                    {announcements.reverse().map((announcements, index) =>
-                                                        <>
-                                                            <ul key={index} className="notification_ul">
-                                                                <li>
-                                                                    <div className="notify_data">
-                                                                        <div className="title">
-                                                                            {announcements.title}
-                                                                        </div>
-                                                                        <div className="sub_title">
-                                                                            {announcements.message}
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="notify_status">
-                                                                        {announcements.typeAnnouncement == "Important" ? (<p style={{ color: "red" }}>
-                                                                            {announcements.typeAnnouncement}
-                                                                        </p>
-                                                                        ) : (announcements.typeAnnouncement == "Alert" ? (
-                                                                            <p style={{ color: "orange" }}>{announcements.typeAnnouncement}</p>
-                                                                        ) : (<p style={{ color: "green" }}>{announcements.typeAnnouncement}</p>))
-                                                                        }
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </>
-                                                    )}
-                                                    <div class="footer bg-dark text-center">
-                                                        <Link
-                                                            to="/dashboard/allAnnouncement"
-                                                            className="text-light"
-                                                        >
-                                                            View All
-                                                        </Link>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </li>
 
                                     <li>
                                         <div className="nav-item nav-link active">
@@ -129,6 +74,61 @@ class Navbar extends Component {
 
                                     {isAuthenticated ? (
                                         <>
+                                            <li>
+                                                <div className="navbar_right  nav-link">
+                                                    <div className="notifications" style={{ marginRight: "0px" }}>
+                                                        <div className="icon_wrap">
+                                                            <i className="far fa-bell" style={{ fontSize: "20px" }}></i>
+                                                            <span className="badge" style={{
+                                                                fontSize: "10px",
+                                                                position: "absolute",
+                                                                top: "2px",
+                                                                right: "-10px",
+                                                                padding: "3px",
+                                                                background: "red",
+                                                                color: "white"
+                                                            }}>3</span>
+                                                        </div>
+
+                                                        <div className="notification_dd">
+                                                            {announcements.reverse().map((announcements, index) =>
+                                                                <>
+                                                                    <ul key={index} className="notification_ul">
+                                                                        <li>
+                                                                            <div className="notify_data">
+                                                                                <div className="title">
+                                                                                    {announcements.title}
+                                                                                </div>
+                                                                                <div className="sub_title">
+                                                                                    {announcements.message}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="notify_status">
+                                                                                {announcements.typeAnnouncement == "Important" ? (<p style={{ color: "red" }}>
+                                                                                    {announcements.typeAnnouncement}
+                                                                                </p>
+                                                                                ) : (announcements.typeAnnouncement == "Alert" ? (
+                                                                                    <p style={{ color: "orange" }}>{announcements.typeAnnouncement}</p>
+                                                                                ) : (<p style={{ color: "green" }}>{announcements.typeAnnouncement}</p>))
+                                                                                }
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </>
+                                                            )}
+                                                            <div className="footer bg-dark text-center">
+                                                                <Link
+                                                                    to="/dashboard/allAnnouncement"
+                                                                    className="text-light"
+                                                                >
+                                                                    View All
+                                                        </Link>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </li>
                                             <li>
                                                 <div className="nav-item nav-link">
                                                     <Link

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Vue from 'vue-react';
+// import Vue from 'vue-react';
 // import "/socket.io/socket.io.js";
 // let express = require('express');
 // let http = require('http').createServer(app);
 // let io = require('socket.io');
 // const router = express.Router();
 
-import MessengerCustomerChat from 'react-messenger-customer-chat';
+// import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 export default class Chat extends Component {
     render() {

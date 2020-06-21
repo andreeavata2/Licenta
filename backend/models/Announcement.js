@@ -5,23 +5,28 @@ const Schema = mongoose.Schema;
 const AnnouncementSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: true,
+    default: ""
   },
-  name: {
+  email: {
     type: String,
-    required: true
+    required: true,
+    default: ""
   },
   date: {
     type: Date,
-    required: true
+    required: true,
+    default: Date.now
   },
   message: {
     type: String,
-    required: true
+    required: true,
+    default: ""
   },
   typeAnnouncement: {
     type: String,
-    // required:  true
+    // required:  true,
+    default: ""
   }
 });
 module.exports = Announcement = mongoose.model("announcements", AnnouncementSchema);
