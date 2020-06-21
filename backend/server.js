@@ -7,6 +7,7 @@ const cors = require('cors');
 const users = require("./routes/api/users");
 const messages = require("./routes/api/messages");
 const feedback = require("./routes/api/feedback");
+const announcement = require("./routes/api/announcements");
 
 const app = express();
 // let http = require('http').Server(app);
@@ -43,6 +44,8 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use('/api/messages', messages);
 app.use('/api/feedback', feedback);
+app.use('/api/announcement', announcement);
+
 
 
 

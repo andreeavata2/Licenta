@@ -6,7 +6,7 @@ module.exports.getFeedbackList = async res => {
         const feedback = await Feedback.find();
         return res.status(200).json({ data: feedback });
     } catch (err) {
-        return res.status(500).json({ msg: "Went wrong on return feedback" });
+        return res.status(500).json({ msg: "Went wrong on return feedbacks" });
     }
 }
 
