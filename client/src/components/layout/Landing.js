@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getFeedbacksList } from "../../actions/feedbackActions";
+import { getQuestionsList } from "../../actions/questionAction";
 
 import imageBackground1 from "../../assets/img/teacher-and-student.jpg";
 import imageBackground2 from "../../assets/img/header-3.jpg";
@@ -22,14 +23,18 @@ class Landing extends Component {
     static propTypes = {
         getFeedbacksList: PropTypes.func.isRequired,
         feedbacks: PropTypes.object.isRequired,
+        getQuestionsList: PropTypes.func.isRequired,
+        questions: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
         this.props.getFeedbacksList();
+        this.props.getQuestionsList();
     }
 
     render() {
         const { feedbacks } = this.props.feedbacks;
+        const { questions } = this.props.questions;
         var face = "";
         return (
             <>
@@ -205,7 +210,7 @@ class Landing extends Component {
                                     <div className="panel panel-default">
                                         <div className="panel-heading">
                                             <h4 className="panel-title">
-                                                <a className="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" data-parent="#accordion">Is account registration required?</a>
+                                                <a className="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" data-parent="#accordion"  style={{color: "black"}}>Is account registration required?</a>
                                             </h4>
                                         </div>
                                         <div id="collapseOne" className="collapse in">
@@ -266,7 +271,8 @@ class Landing extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    feedbacks: state.feedbacks
+    feedbacks: state.feedbacks,
+    questions: state.questions
 });
 
-export default withRouter(connect(mapStateToProps, { getFeedbacksList })(Landing));
+export default withRouter(connect(mapStateToProps, { getFeedbacksList, getQuestionsList })(Landing));
