@@ -19,7 +19,7 @@ class AddAnnouncement extends Component {
         super();
         this.state = {
             title: "",
-            email: "",
+            name: "",
             date: "",
             message: "",
             typeAnnouncement: "",
@@ -44,7 +44,7 @@ class AddAnnouncement extends Component {
 
         const newAnnouncement = {
             title: this.state.title,
-            email: this.state.email,
+            name: this.state.name,
             date: this.state.date,
             message: this.state.message,
             typeAnnouncement: this.state.typeAnnouncement
@@ -59,7 +59,7 @@ class AddAnnouncement extends Component {
     render() {
         const { errors } = this.state;
         const { user } = this.props.auth;
-        this.state.email = user.email;
+        this.state.name = user.name;
 
         return (
             <div id="content" className="p-4 p-md-5">
@@ -72,41 +72,41 @@ class AddAnnouncement extends Component {
                                     content={
                                         <form control="" noValidate onSubmit={this.onSubmit}>
                                             <div className="form-group">
-                                                <input className="col-md-12 form-control"
+                                                <input className="col-md-12"
                                                     onChange={this.onChange}
                                                     value={this.state.title}
                                                     error={errors.title}
                                                     id="title"
                                                     type="text"
                                                     name="title" autoFocus
-                                                    // className="form-control"
+                                                    className="form-control"
                                                     placeholder="Announcement title"
                                                 />
                                                 <span className="red-text">{errors.title}</span>
                                             </div>
 
                                             <div className="form-group">
-                                                <input className="col-md-5 form-control"
+                                                <input className="col-md-5"
                                                     onChange={this.onChange}
-                                                    value={user.email}
-                                                    error={errors.email}
-                                                    id="email"
-                                                    name="email" autoFocus
-                                                    // className="form-control"
-                                                    placeholder= "Email"
+                                                    value={user.name}
+                                                    error={errors.name}
+                                                    id="name"
+                                                    name="name" autoFocus
+                                                    className="form-control"
+                                                    placeholder= "Full Name"
                                                 />
-                                                <span className="red-text">{errors.email}</span>
+                                                <span className="red-text">{errors.name}</span>
                                             </div>
 
                                             <div className="form-group">
-                                                <input className="col-md-7 form-control"
+                                                <input className="col-md-7"
                                                     onChange={this.onChange}
                                                     value={this.state.date}
                                                     error={errors.date}
                                                     type="date"
                                                     id="date"
                                                     name="date" autoFocus
-                                                    // className="form-control"
+                                                    className="form-control"
                                                     placeholder="Date"
                                                 />
                                                 <span className="red-text">{errors.date}</span>

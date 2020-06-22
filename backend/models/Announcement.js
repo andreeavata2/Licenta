@@ -8,7 +8,7 @@ const AnnouncementSchema = new Schema({
     required: true,
     default: ""
   },
-  email: {
+  name: {
     type: String,
     required: true,
     default: ""

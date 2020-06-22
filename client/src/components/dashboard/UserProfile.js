@@ -46,39 +46,58 @@ class UserProfile extends Component {
                                                     }
                                                 ]}
                                             />
-                                            <FormInputs
-                                                ncols={["col-md-5", "col-md-7"]}
-                                                properties={[
-                                                    {
-                                                        label: "Full name",
-                                                        type: "text",
-                                                        bsClass: "form-control",
-                                                        placeholder: "Ful name",
-                                                        defaultValue: user.name
-                                                    },
-                                                    {
-                                                        label: "License Name",
-                                                        type: "text",
-                                                        bsClass: "form-control",
-                                                        placeholder: "License Name",
-                                                        defaultValue: "License Management"
-                                                    }
-                                                ]}
-                                            />
+                                            {user.typeUser === "student" ? (
+                                                <FormInputs
+                                                    ncols={["col-md-5", "col-md-7"]}
+                                                    properties={[
+                                                        {
+                                                            label: "Full name",
+                                                            type: "text",
+                                                            bsClass: "form-control",
+                                                            placeholder: "Ful name",
+                                                            defaultValue: user.name
+                                                        },
+                                                        {
+                                                            label: "License Name",
+                                                            type: "text",
+                                                            bsClass: "form-control",
+                                                            placeholder: "License Name",
+                                                            defaultValue: "License Management"
+                                                        }
+                                                    ]}
+                                                />
+                                            ) : (
+                                                    <FormInputs
+                                                        ncols={["col-md-12"]}
+                                                        properties={[
+                                                            {
+                                                                label: "Full name",
+                                                                type: "text",
+                                                                bsClass: "form-control",
+                                                                placeholder: "Ful name",
+                                                                defaultValue: user.name
+                                                            }
+                                                        ]}
+                                                    />
+                                                )
+                                            }
 
 
-                                            <FormInputs
-                                                ncols={["col-md-12"]}
-                                                properties={[
-                                                    {
-                                                        label: "License Teacher (disabled)",
-                                                        type: "text",
-                                                        bsClass: "form-control",
-                                                        defaultValue: user.licenseTeacher,
-                                                        disabled: true
-                                                    }
-                                                ]}
-                                            />
+                                            {user.typeUser === "student" ? (
+                                                <FormInputs
+                                                    ncols={["col-md-12"]}
+                                                    properties={[
+                                                        {
+                                                            label: "License Teacher (disabled)",
+                                                            type: "text",
+                                                            bsClass: "form-control",
+                                                            defaultValue: user.licenseTeacher,
+                                                            disabled: true
+                                                        }
+                                                    ]}
+                                                />
+                                            ) : (null)}
+
                                             <Button bsStyle="info" pullRight fill type="submit" style={{ width: "auto" }}>
                                                 Update Profile
                                             </Button>

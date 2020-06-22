@@ -24,7 +24,7 @@ class Announcements extends Component {
         this.props.getAnnouncementsList();
     }
 
-    onDelete = async(id) => {
+    onDelete = async (id) => {
         await this.props.deleteAnnouncement(id);
         await this.props.getAnnouncementsList();
 
@@ -42,7 +42,7 @@ class Announcements extends Component {
                                 <Col md={12}>
                                     <Card
                                         title="Announcements Posts"
-                                        category="Here is a list with all announcements"
+                                        category={`Here is a list with all announcements from my License Teacher, ${user.licenseTeacher}`}
                                         ctTableFullWidth
                                         ctTableResponsive
                                         content={
@@ -63,34 +63,72 @@ class Announcements extends Component {
                                                 </thead>
                                                 <tbody>
                                                     {announcements.reverse().map((announcements, index) =>
-                                                        <tr key={index}>
-                                                            <td>
-                                                                {index + 1}
-                                                            </td>
-                                                            <td>{announcements.title}</td>
-                                                            <td>{announcements.name}</td>
-                                                            <td>{announcements.date}</td>
-                                                            <td>{announcements.message}</td>
-                                                            {announcements.typeAnnouncement === "Important" ? (<td style={{ color: "red" }}>
-                                                                {announcements.typeAnnouncement}
-                                                            </td>
-                                                            ) : (announcements.typeAnnouncement === "Alert" ? (
-                                                                <td style={{ color: "orange" }}>{announcements.typeAnnouncement}</td>
-                                                            ) : (<td style={{ color: "green" }}>{announcements.typeAnnouncement}</td>))
-                                                            }
+                                                        user.typeUser === "professor" ? (
+                                                            announcements.name === user.name ? (
+                                                                <tr key={index}>
+                                                                    <td>
+                                                                        {index + 1}
+                                                                    </td>
+                                                                    <td>{announcements.title}</td>
+                                                                    <td>{announcements.name}</td>
+                                                                    <td>{announcements.date}</td>
+                                                                    <td>{announcements.message}</td>
+                                                                    {announcements.typeAnnouncement === "Important" ? (<td style={{ color: "red" }}>
+                                                                        {announcements.typeAnnouncement}
+                                                                    </td>
+                                                                    ) : (announcements.typeAnnouncement === "Alert" ? (
+                                                                        <td style={{ color: "orange" }}>{announcements.typeAnnouncement}</td>
+                                                                    ) : (<td style={{ color: "green" }}>{announcements.typeAnnouncement}</td>))
+                                                                    }
 
-                                                            {user.typeUser === "professor" ? (
-                                                                <td>
-                                                                    <button style={{ width: "auto", margin: "0", border: "none" }}
-                                                                        // onDelete={this.onDelete(announcements._id)}
-                                                                        onClick={() => this.onDelete(announcements._id)}
-                                                                    >
-                                                                        <MDBIcon icon="trash" />
-                                                                    </button>
-                                                                </td>
-                                                            ) : (null)}
+                                                                    {user.typeUser === "professor" ? (
+                                                                        <td>
+                                                                            <button style={{ width: "auto", margin: "0", border: "none" }}
+                                                                                // onDelete={this.onDelete(announcements._id)}
+                                                                                onClick={() => this.onDelete(announcements._id)}
+                                                                            >
+                                                                                <MDBIcon icon="trash" />
+                                                                            </button>
+                                                                        </td>
+                                                                    ) : (null)}
 
-                                                        </tr>
+                                                                </tr>
+
+                                                            ) : (null)
+                                                        ) : (
+                                                                user.licenseTeacher === announcements.name ? (
+                                                                    < tr key={index} >
+                                                                        <td>
+                                                                            {index + 1}
+                                                                        </td>
+                                                                        <td>{announcements.title}</td>
+                                                                        <td>{announcements.name}</td>
+                                                                        <td>{announcements.date}</td>
+                                                                        <td>{announcements.message}</td>
+                                                                        {
+                                                                            announcements.typeAnnouncement === "Important" ? (<td style={{ color: "red" }}>
+                                                                                {announcements.typeAnnouncement}
+                                                                            </td>
+                                                                            ) : (announcements.typeAnnouncement === "Alert" ? (
+                                                                                <td style={{ color: "orange" }}>{announcements.typeAnnouncement}</td>
+                                                                            ) : (<td style={{ color: "green" }}>{announcements.typeAnnouncement}</td>))
+                                                                        }
+
+                                                                        {
+                                                                            user.typeUser === "professor" ? (
+                                                                                <td>
+                                                                                    <button style={{ width: "auto", margin: "0", border: "none" }}
+                                                                                        // onDelete={this.onDelete(announcements._id)}
+                                                                                        onClick={() => this.onDelete(announcements._id)}
+                                                                                    >
+                                                                                        <MDBIcon icon="trash" />
+                                                                                    </button>
+                                                                                </td>
+                                                                            ) : (null)
+                                                                        }
+                                                                    </tr>
+                                                                ) : (null)
+                                                            )
                                                     )}
                                                 </tbody>
                                             </Table>
