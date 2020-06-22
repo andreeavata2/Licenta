@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getFeedbacksList } from "../../actions/feedbackActions";
-import { getQuestionsList } from "../../actions/questionAction";
+import { getQuestionsList, addQuestion } from "../../actions/questionAction";
 
 import imageBackground1 from "../../assets/img/teacher-and-student.jpg";
 import imageBackground2 from "../../assets/img/header-3.jpg";
@@ -15,8 +15,7 @@ import face1 from "../../assets/img/faces/face_1.jpg";
 import face2 from "../../assets/img/faces/face_2.jpg";
 import face3 from "../../assets/img/faces/face_3.jpg";
 import Navbar from './Navbar';
-import feedbackReducers from '../../reducers/feedbackReducers';
-import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
+import { MDBIcon } from "mdbreact";
 import "./questions.css";
 
 class Landing extends Component {
@@ -25,6 +24,28 @@ class Landing extends Component {
         feedbacks: PropTypes.object.isRequired,
         getQuestionsList: PropTypes.func.isRequired,
         questions: PropTypes.object.isRequired,
+        addQuestion: PropTypes.func.isRequired,
+        errors: PropTypes.object.isRequired
+    };
+
+    constructor() {
+        super();
+        this.state = {
+            question: "",
+            errors: {}
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
     };
 
     componentDidMount() {
@@ -32,9 +53,22 @@ class Landing extends Component {
         this.props.getQuestionsList();
     }
 
+    onSubmit = async(e) => {
+        e.preventDefault();
+
+        const newQuestion = {
+            question: this.state.question
+        };
+        console.log(newQuestion);
+
+        await this.props.addQuestion(newQuestion, this.props.history);
+        window.location.reload(false);
+    };
+
     render() {
         const { feedbacks } = this.props.feedbacks;
         const { questions } = this.props.questions;
+        const { errors } = this.state;
         var face = "";
         return (
             <>
@@ -186,18 +220,23 @@ class Landing extends Component {
                                         answer you as soon as possible.</p>
                                 </div>
 
-                                {/* <form control="" className="form panel-body" noValidate onSubmit={this.onSubmit}> */}
-                                <form control="" className="form panel-body">
+                                <form control="" className="form panel-body" noValidate onSubmit={this.onSubmit}>
                                     <div className="form-group">
                                         <textarea
+                                            onChange={this.onChange}
+                                            value={this.state.question}
+                                            error={errors.question}
+                                            id="question"
                                             className="form-control"
-                                            name="message"
+                                            name="message" required
                                             rows="5"
                                             cols="30"
                                             placeholder="Enter your question here.."
                                         >
                                         </textarea>
+                                        <span className="red-text">{errors.question}</span>
                                     </div>
+                                    
                                     <button className="btn btn-danger btn-fill btn-lg" type="submit">Send</button>
                                 </form>
                             </div>
@@ -206,47 +245,25 @@ class Landing extends Component {
                                 <div className="panel-group" id="accordion">
                                     <h2 className="text-black">General questions</h2>
                                     <div className="separator separator-danger">♦</div>
+                                    <br></br>
 
-                                    <div className="panel panel-default">
-                                        <div className="panel-heading">
-                                            <h4 className="panel-title">
-                                                <a className="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" data-parent="#accordion"  style={{color: "black"}}>Is account registration required?</a>
-                                            </h4>
+                                    {questions.reverse().map((questions, index) =>
+                                        <div className="panel panel-default">
+                                            <>
+                                                <div key={index} className="panel-heading">
+                                                    <h4 className="panel-title">
+                                                        <a className="accordion-toggle" data-toggle="collapse" data-target={`#${index}`} data-parent="#accordion">{questions.question}</a>
+                                                    </h4>
+                                                </div>
+                                                <div id={`${index}`} className="collapse in">
+                                                    {questions.answers.map((answer, i) => {
+                                                        console.log("Entered");
+                                                        return (<p className="description">{answer}</p>)
+                                                    })}
+                                                </div>
+                                            </>
                                         </div>
-                                        <div id="collapseOne" className="collapse in">
-                                            <p className="description">
-                                                Account registration at <strong>PrepBootstrap</strong> is only required if you will be selling or buying themes.
-                                                This ensures a valid communication channel for all parties involved in any transactions.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="panel panel-default">
-                                        <div className="panel-heading">
-                                            <h4 className="panel-title">
-                                                <a className="accordion-toggle collapsed" data-toggle="collapse" data-target="#collapseTen" data-parent="#accordion">Can I submit my own Bootstrap templates or themes?</a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseTen" className="collapse in">
-                                            <p className="description">
-                                                A lot of the content of the site has been submitted by the community. Whether it is a commercial element/template/theme
-                                                or a free one, you are encouraged to contribute. All credits are published along with the resources.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="panel panel-default">
-                                        <div className="panel-heading">
-                                            <h4 className="panel-title">
-                                                <a className="accordion-toggle collapsed" data-toggle="collapse" data-target="#collapseEleven" data-parent="#accordion">What is the currency used for all transactions?</a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseEleven" className="collapse in">
-                                            <p className="description">
-                                                All prices for themes, templates and other items, including each seller's or buyer's account balance are in <strong>USD</strong>
-                                            </p>
-                                        </div>
-                                    </div>
+                                    )}
                                 </div>
                             </div>
 
@@ -272,7 +289,8 @@ class Landing extends Component {
 
 const mapStateToProps = (state) => ({
     feedbacks: state.feedbacks,
-    questions: state.questions
+    questions: state.questions,
+    errors: state.errors
 });
 
-export default withRouter(connect(mapStateToProps, { getFeedbacksList, getQuestionsList })(Landing));
+export default withRouter(connect(mapStateToProps, { getFeedbacksList, getQuestionsList, addQuestion })(Landing));
