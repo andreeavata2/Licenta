@@ -15,13 +15,13 @@ router.get("/", async (req, res) => {
 });
 
 
-// @route Get api/announcement/addAnnouncement
+// @route POST api/announcement/addAnnouncement
 // @desc Login user and return JWT token
 router.post("/addAnnouncement", async (req, res) => {
     AnnouncementController.addNewAnnouncement(req, res);
 });
 
-// route POST api/announcement/:id
+// route DELETE api/announcement/:id
 // delete a student from id
 router.delete("/:id", async (req, res) => {
     AnnouncementController.deleteAnnouncement(req, res);

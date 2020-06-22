@@ -16,6 +16,7 @@ import face3 from "../../assets/img/faces/face_3.jpg";
 import Navbar from './Navbar';
 import feedbackReducers from '../../reducers/feedbackReducers';
 import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
+import "./questions.css";
 
 class Landing extends Component {
     static propTypes = {
@@ -177,13 +178,73 @@ class Landing extends Component {
                                     <h2 className="text-black">Do you have a question for us?</h2>
                                     <div className="separator separator-danger">♦</div>
                                     <p className="description"> If you have any questions or problems, do not hesitate to contact us. We will
-                    answer you as soon as possible.</p>
+                                        answer you as soon as possible.</p>
                                 </div>
 
-                                <div className="button-get-started">
-                                    <a href="#" className="btn btn-danger btn-fill btn-lg">Contact Us</a>
+                                {/* <form control="" className="form panel-body" noValidate onSubmit={this.onSubmit}> */}
+                                <form control="" className="form panel-body">
+                                    <div className="form-group">
+                                        <textarea
+                                            className="form-control"
+                                            name="message"
+                                            rows="5"
+                                            cols="30"
+                                            placeholder="Enter your question here.."
+                                        >
+                                        </textarea>
+                                    </div>
+                                    <button className="btn btn-danger btn-fill btn-lg" type="submit">Send</button>
+                                </form>
+                            </div>
+
+                            <div className="container">
+                                <div className="panel-group" id="accordion">
+                                    <h2 className="text-black">General questions</h2>
+                                    <div className="separator separator-danger">♦</div>
+
+                                    <div className="panel panel-default">
+                                        <div className="panel-heading">
+                                            <h4 className="panel-title">
+                                                <a className="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" data-parent="#accordion">Is account registration required?</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" className="collapse in">
+                                            <p className="description">
+                                                Account registration at <strong>PrepBootstrap</strong> is only required if you will be selling or buying themes.
+                                                This ensures a valid communication channel for all parties involved in any transactions.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="panel panel-default">
+                                        <div className="panel-heading">
+                                            <h4 className="panel-title">
+                                                <a className="accordion-toggle collapsed" data-toggle="collapse" data-target="#collapseTen" data-parent="#accordion">Can I submit my own Bootstrap templates or themes?</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTen" className="collapse in">
+                                            <p className="description">
+                                                A lot of the content of the site has been submitted by the community. Whether it is a commercial element/template/theme
+                                                or a free one, you are encouraged to contribute. All credits are published along with the resources.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="panel panel-default">
+                                        <div className="panel-heading">
+                                            <h4 className="panel-title">
+                                                <a className="accordion-toggle collapsed" data-toggle="collapse" data-target="#collapseEleven" data-parent="#accordion">What is the currency used for all transactions?</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseEleven" className="collapse in">
+                                            <p className="description">
+                                                All prices for themes, templates and other items, including each seller's or buyer's account balance are in <strong>USD</strong>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
