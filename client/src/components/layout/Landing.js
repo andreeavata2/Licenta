@@ -80,7 +80,7 @@ class Landing extends Component {
                                     <div className="info-icon">
                                         <div className="icon text-danger">
                                             {/* <i className="pe-7s-graph1"></i> */}
-                                            <MDBIcon icon="bell" style={{width: "auto"}} />
+                                            <MDBIcon icon="bell" style={{ width: "auto" }} />
                                         </div>
                                         <h3>Notifications</h3>
                                         <p className="description">We make our design perfect for you. Our adjustment turn our clothes into
@@ -91,7 +91,7 @@ class Landing extends Component {
                                     <div className="info-icon">
                                         <div className="icon text-danger">
                                             {/* <i className="pe-7s-note2"></i> */}
-                                            <MDBIcon icon="comments" style={{width: "auto"}}/>
+                                            <MDBIcon icon="comments" style={{ width: "auto" }} />
                                         </div>
                                         <h3>Chat</h3>
                                         <p className="description">We create a persona regarding the multiple wardrobe accessories that we
@@ -102,7 +102,7 @@ class Landing extends Component {
                                     <div className="info-icon">
                                         <div className="icon text-danger">
                                             {/* <i className="fas fa-music"></i> */}
-                                            <MDBIcon icon="university" style={{width: "auto"}}/>
+                                            <MDBIcon icon="university" style={{ width: "auto" }} />
                                         </div>
 
                                         <h3>Students Management</h3>
@@ -174,10 +174,9 @@ class Landing extends Component {
                             </div>
                             <div className="container">
                                 <div className="title-area">
-                                    <h2 className="text-black">Do you want to contact us?</h2>
+                                    <h2 className="text-black">Do you have a question for us?</h2>
                                     <div className="separator separator-danger">♦</div>
-                                    <p className="description"> If you have any questions or problems about this site, do not hesitate to
-                                    contact us. We will
+                                    <p className="description"> If you have any questions or problems, do not hesitate to contact us. We will
                     answer you as soon as possible.</p>
                                 </div>
 

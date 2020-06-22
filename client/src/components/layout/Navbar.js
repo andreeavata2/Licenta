@@ -44,7 +44,7 @@ class Navbar extends Component {
                     <Feedback />
 
 
-                    <nav className="navbar navbar-expand-lg navbar-light navbar-custom fixed">
+                    <nav className="navbar navbar-expand-lg navbar-light navbar-custom fixed" style={{height: "45px"}}>
                         <a className="navbar-brand" href="\">License Manager</a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
@@ -93,7 +93,7 @@ class Navbar extends Component {
 
                                                             <div className="notification_dd">
                                                                 {announcements.reverse().map((announcements, index) =>
-                                                                    index < 3 & user.licenseTeacher === announcements ? (
+                                                                    index <= 3 & user.licenseTeacher === announcements.name ? (
                                                                         <>
                                                                             <ul key={index} className="notification_ul">
                                                                                 <li>

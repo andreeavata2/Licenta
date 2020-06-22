@@ -21,7 +21,7 @@ router.post("/addAnnouncement", async (req, res) => {
     AnnouncementController.addNewAnnouncement(req, res);
 });
 
-// route POST api/announcement/delete
+// route POST api/announcement/:id
 // delete a student from id
 router.delete("/:id", async (req, res) => {
     AnnouncementController.deleteAnnouncement(req, res);
