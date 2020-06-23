@@ -16,16 +16,21 @@ router.get("/", async (req, res) => {
 
 
 // @route POST api/announcement/addAnnouncement
-// @desc Login user and return JWT token
 router.post("/addQuestion", async (req, res) => {
     QuestionController.addNewQuestion(req, res);
 });
 
 // route DELETE api/announcement/:id
-// delete a student from id
+// delete a question from id
 router.delete("/:id", async (req, res) => {
     QuestionController.deleteQuestion(req, res);
     
+})
+
+// route PATCH api/announcement/:id
+// patch a question from id
+router.patch("/:id", async (req, res) => {
+    QuestionController.updateQuestion(req, res);
 })
 
 module.exports = router;

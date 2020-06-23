@@ -11,6 +11,7 @@ import { getQuestionsList, addQuestion } from "../../actions/questionAction";
 
 import imageBackground1 from "../../assets/img/teacher-and-student.jpg";
 import imageBackground2 from "../../assets/img/header-3.jpg";
+import avatar from "../../assets/img/faces/avatar.png"
 import face1 from "../../assets/img/faces/face_1.jpg";
 import face2 from "../../assets/img/faces/face_2.jpg";
 import face3 from "../../assets/img/faces/face_3.jpg";
@@ -53,7 +54,7 @@ class Landing extends Component {
         this.props.getQuestionsList();
     }
 
-    onSubmit = async(e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
 
         const newQuestion = {
@@ -188,7 +189,7 @@ class Landing extends Component {
                                                             <div className="card card-member">
                                                                 <div className="content" style={{ height: "400px" }}>
                                                                     <div className="avatar avatar-danger">
-                                                                        <img src={face1} />;
+                                                                        <img src={avatar} />;
                                                                     </div>
                                                                     <div className="description">
                                                                         <h3 className="title">{feedback.name}</h3>
@@ -236,7 +237,7 @@ class Landing extends Component {
                                         </textarea>
                                         <span className="red-text">{errors.question}</span>
                                     </div>
-                                    
+
                                     <button className="btn btn-danger btn-fill btn-lg" type="submit">Send</button>
                                 </form>
                             </div>
@@ -247,22 +248,40 @@ class Landing extends Component {
                                     <div className="separator separator-danger">♦</div>
                                     <br></br>
 
+
                                     {questions.reverse().map((questions, index) =>
-                                        <div className="panel panel-default">
-                                            <>
+                                        <>
+
+                                            <div className="panel panel-default">
                                                 <div key={index} className="panel-heading">
                                                     <h4 className="panel-title">
                                                         <a className="accordion-toggle" data-toggle="collapse" data-target={`#${index}`} data-parent="#accordion">{questions.question}</a>
                                                     </h4>
                                                 </div>
+
                                                 <div id={`${index}`} className="collapse in">
+                                                    <form control="" noValidate onSubmit={this.onSubmit}>
+                                                        <div className="form-group">
+                                                            <input className="col-md-12"
+                                                                // onChange={this.onChange}
+                                                                // value={this.state.title}
+                                                                // error={errors.title}
+                                                                id="answer"
+                                                                type="text"
+                                                                name="answer" autoFocus
+                                                                className="form-control"
+                                                                placeholder="Put your answer here"
+                                                            />
+                                                            <span className="red-text">{errors.answer}</span>
+                                                        </div>
+                                                    </form>
                                                     {questions.answers.map((answer, i) => {
                                                         console.log("Entered");
                                                         return (<p className="description">{answer}</p>)
                                                     })}
                                                 </div>
-                                            </>
-                                        </div>
+                                            </div>
+                                        </>
                                     )}
                                 </div>
                             </div>
