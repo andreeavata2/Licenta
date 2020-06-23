@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getFeedbacksList } from "../../actions/feedbackActions";
-import { getQuestionsList, addQuestion } from "../../actions/questionAction";
+import { getQuestionsList, addQuestion, updateQuestion } from "../../actions/questionAction";
 
 import imageBackground1 from "../../assets/img/teacher-and-student.jpg";
 import imageBackground2 from "../../assets/img/header-3.jpg";
@@ -26,6 +26,7 @@ class Landing extends Component {
         getQuestionsList: PropTypes.func.isRequired,
         questions: PropTypes.object.isRequired,
         addQuestion: PropTypes.func.isRequired,
+        updateQuestion: PropTypes.func.isRequired,
         errors: PropTypes.object.isRequired
     };
 
@@ -33,8 +34,14 @@ class Landing extends Component {
         super();
         this.state = {
             question: "",
+            answers: ["hmm"],
             errors: {}
         };
+        // this.state2 = {
+        //     question: "",
+        //     answers: ["hmhm"],
+        //     errors: {}
+        // };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -45,8 +52,8 @@ class Landing extends Component {
         }
     }
 
-    onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
+    onChange = async (e) => {
+        await this.setState({ [e.target.id]: e.target.value });
     };
 
     componentDidMount() {
@@ -58,13 +65,34 @@ class Landing extends Component {
         e.preventDefault();
 
         const newQuestion = {
-            question: this.state.question
+            question: this.state.question,
+            answers: this.state.answers
         };
+        // const updateQuestion = {
+        //     question: this.state.question,
+        //     answers: this.state.answers
+        // }
+
         console.log(newQuestion);
+        // console.log(updateQuestion);
 
         await this.props.addQuestion(newQuestion, this.props.history);
+        // await this.props.updateQuestion(updateQuestion, this.props.history);
         window.location.reload(false);
     };
+
+    // onSubmit2 = async (e) => {
+    //     e.preventDefault();
+
+    //     const updateQuestion = {
+    //         question: this.state.question,
+    //         answers: this.state.answers
+    //     }
+    //     console.log(updateQuestion);
+
+    //     await this.props.updateQuestion(updateQuestion, this.props.history);
+    //     window.location.reload(false);
+    // };
 
     render() {
         const { feedbacks } = this.props.feedbacks;
@@ -244,7 +272,7 @@ class Landing extends Component {
 
                             <div className="container">
                                 <div className="panel-group" id="accordion">
-                                    <h2 className="text-black">General questions</h2>
+                                    <h2 className="text-black">Frequently questions</h2>
                                     <div className="separator separator-danger">♦</div>
                                     <br></br>
 
@@ -259,24 +287,26 @@ class Landing extends Component {
                                                     </h4>
                                                 </div>
 
+
                                                 <div id={`${index}`} className="collapse in">
-                                                    <form control="" noValidate onSubmit={this.onSubmit}>
-                                                        <div className="form-group">
-                                                            <input className="col-md-12"
-                                                                // onChange={this.onChange}
-                                                                // value={this.state.title}
-                                                                // error={errors.title}
+                                                    <form control="" noValidate className="form panel-body" onSubmit={this.onSubmit}>
+                                                        <div className="form-group col-md-11">
+                                                            {/* <input
+                                                                name="message" required
+                                                            /> */}
+                                                            <input
+                                                                onChange={this.onChange}
+                                                                // value={this.state.answers}
                                                                 id="answer"
-                                                                type="text"
-                                                                name="answer" autoFocus
                                                                 className="form-control"
+                                                                type="text"
                                                                 placeholder="Put your answer here"
                                                             />
-                                                            <span className="red-text">{errors.answer}</span>
                                                         </div>
+                                                        <button className="btn btn-danger btn-fill pull-right" type="submit">Send</button>
                                                     </form>
                                                     {questions.answers.map((answer, i) => {
-                                                        console.log("Entered");
+                                                        // console.log("Entered");
                                                         return (<p className="description">{answer}</p>)
                                                     })}
                                                 </div>
@@ -312,4 +342,4 @@ const mapStateToProps = (state) => ({
     errors: state.errors
 });
 
-export default withRouter(connect(mapStateToProps, { getFeedbacksList, getQuestionsList, addQuestion })(Landing));
+export default withRouter(connect(mapStateToProps, { getFeedbacksList, getQuestionsList, addQuestion, updateQuestion })(Landing));

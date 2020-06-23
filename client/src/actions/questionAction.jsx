@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_QUESTIONS, GET_ERRORS, DELETE_QUESTION } from "./types";
+import { GET_QUESTIONS, GET_ERRORS, DELETE_QUESTION, UPDATE_QUESTION } from "./types";
 
 //get all questions
 
@@ -38,3 +38,18 @@ export const deleteQuestion = (questionData) => dispatch => {
 
         );
 };
+
+// Update questions
+export const updateQuestion = (questionData) => dispatch => {
+    axios
+        .patch(`http://localhost:5000/api/question/${questionData}`)
+        .then(res => {
+            dispatch(getQuestionsList())
+            return dispatch({
+                type: UPDATE_QUESTION,
+                payload: res.data.data
+            })
+        }
+
+        );
+}
