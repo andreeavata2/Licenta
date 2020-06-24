@@ -39,7 +39,7 @@ class AddAnnouncement extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
-    onSubmit = async(e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
 
         const newAnnouncement = {
@@ -52,7 +52,6 @@ class AddAnnouncement extends Component {
         console.log(newAnnouncement);
 
         await this.props.addAnnouncement(newAnnouncement, this.props.history);
-        // window.location.reload(false);
         this.props.history.push('/dashboard/allAnnouncement');
     };
 
@@ -93,7 +92,7 @@ class AddAnnouncement extends Component {
                                                     id="name"
                                                     name="name" autoFocus
                                                     className="form-control"
-                                                    placeholder= "Full Name"
+                                                    placeholder="Full Name"
                                                 />
                                                 <span className="red-text">{errors.name}</span>
                                             </div>
@@ -113,7 +112,7 @@ class AddAnnouncement extends Component {
                                             </div>
 
                                             <div className="form-group">
-                                                <input
+                                                <textarea
                                                     onChange={this.onChange}
                                                     value={this.state.message}
                                                     error={errors.message}
@@ -121,6 +120,8 @@ class AddAnnouncement extends Component {
                                                     name="message" autoFocus
                                                     className="form-control"
                                                     placeholder="Enter your announcement"
+                                                    rows="5"
+                                                    cols="30"
                                                 />
                                                 <span className="red-text">{errors.message}</span>
                                             </div>

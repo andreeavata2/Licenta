@@ -67,7 +67,6 @@ class Navbar extends Component {
                                             >
                                                 Home
                                     </Link>
-                                            {/* <span className="sr-only">(current)</span> */}
                                         </div>
                                     </li>
 
@@ -138,21 +137,6 @@ class Navbar extends Component {
                                             <li>
                                                 <div className="nav-item nav-link">
                                                     <Link
-                                                        to="/chat"
-                                                        style={{
-                                                            width: "auto",
-                                                            borderRadius: "3px",
-                                                            letterSpacing: "1.5px"
-                                                        }}
-                                                        className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                                                    >
-                                                        Chat
-                                            </Link>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="nav-item nav-link">
-                                                    <Link
                                                         to="/dashboard"
                                                         style={{
                                                             width: "auto",
@@ -178,7 +162,6 @@ class Navbar extends Component {
                                                         onClick={this.onLogoutClick}
                                                     >
                                                         Logout
-                                                        {/* <i className="fa fa-sign-out"></i> */}
                                                         <MDBIcon icon="sign-out-alt" />
                                                     </Link>
                                                 </div>

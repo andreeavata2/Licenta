@@ -34,14 +34,9 @@ class Landing extends Component {
         super();
         this.state = {
             question: "",
-            answers: ["hmm"],
+            answers: "",
             errors: {}
         };
-        // this.state2 = {
-        //     question: "",
-        //     answers: ["hmhm"],
-        //     errors: {}
-        // };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -68,31 +63,25 @@ class Landing extends Component {
             question: this.state.question,
             answers: this.state.answers
         };
-        // const updateQuestion = {
-        //     question: this.state.question,
-        //     answers: this.state.answers
-        // }
 
         console.log(newQuestion);
-        // console.log(updateQuestion);
-
         await this.props.addQuestion(newQuestion, this.props.history);
-        // await this.props.updateQuestion(updateQuestion, this.props.history);
-        window.location.reload(false);
+        this.setState({
+            question: ''
+        })
     };
-
-    // onSubmit2 = async (e) => {
-    //     e.preventDefault();
-
-    //     const updateQuestion = {
-    //         question: this.state.question,
-    //         answers: this.state.answers
-    //     }
-    //     console.log(updateQuestion);
-
-    //     await this.props.updateQuestion(updateQuestion, this.props.history);
-    //     window.location.reload(false);
-    // };
+    onSubmitAnswer = async (e, index, id) => {
+        e.preventDefault();
+        if (this.state[`answer-${index}`]) {
+            const newObj = {
+                answers: this.state[`answer-${index}`]
+            }
+            await this.props.updateQuestion(id, newObj);
+            this.setState({
+                [`answer-${index}`]: ''
+            })
+        }
+    }
 
     render() {
         const { feedbacks } = this.props.feedbacks;
@@ -148,35 +137,35 @@ class Landing extends Component {
                                 <div className="col-md-4">
                                     <div className="info-icon">
                                         <div className="icon text-danger">
-                                            {/* <i className="pe-7s-graph1"></i> */}
                                             <MDBIcon icon="bell" style={{ width: "auto" }} />
                                         </div>
                                         <h3>Notifications</h3>
-                                        <p className="description">We make our design perfect for you. Our adjustment turn our clothes into
-                        your clothes.</p>
+                                        <p className="description">
+                                            One feature of this application is that: professors can send notifications to the students they guide.
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="col-md-4">
                                     <div className="info-icon">
                                         <div className="icon text-danger">
-                                            {/* <i className="pe-7s-note2"></i> */}
                                             <MDBIcon icon="comments" style={{ width: "auto" }} />
                                         </div>
                                         <h3>Chat</h3>
-                                        <p className="description">We create a persona regarding the multiple wardrobe accessories that we
-                        provide..</p>
+                                        <p className="description">
+                                            Users can communicate with each other very easily
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="col-md-4">
                                     <div className="info-icon">
                                         <div className="icon text-danger">
-                                            {/* <i className="fas fa-music"></i> */}
                                             <MDBIcon icon="university" style={{ width: "auto" }} />
                                         </div>
 
                                         <h3>Students Management</h3>
-                                        <p className="description">We like to present the world with our work, so we make sure we spread the
-                        word regarding our clothes.</p>
+                                        <p className="description">
+                                            Each teacher can have access to information about his students.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -277,27 +266,27 @@ class Landing extends Component {
                                     <br></br>
 
 
-                                    {questions.reverse().map((questions, index) =>
+                                    {questions.map((question, index) =>
                                         <>
 
                                             <div className="panel panel-default">
                                                 <div key={index} className="panel-heading">
                                                     <h4 className="panel-title">
-                                                        <a className="accordion-toggle" data-toggle="collapse" data-target={`#${index}`} data-parent="#accordion">{questions.question}</a>
+                                                        <a className="accordion-toggle" data-toggle="collapse" data-target={`#${index}`} data-parent="#accordion">{question.question}</a>
                                                     </h4>
                                                 </div>
 
 
                                                 <div id={`${index}`} className="collapse in">
-                                                    <form control="" noValidate className="form panel-body" onSubmit={this.onSubmit}>
+                                                    <form control="" noValidate className="form panel-body"
+                                                        onSubmit={(e) => this.onSubmitAnswer(e, index, question._id)}
+                                                    >
                                                         <div className="form-group col-md-11">
-                                                            {/* <input
-                                                                name="message" required
-                                                            /> */}
+
                                                             <input
                                                                 onChange={this.onChange}
-                                                                // value={this.state.answers}
-                                                                id="answer"
+                                                                value={this.state[`answer-${index}`] || ''}
+                                                                id={`answer-${index}`}
                                                                 className="form-control"
                                                                 type="text"
                                                                 placeholder="Put your answer here"
@@ -305,8 +294,7 @@ class Landing extends Component {
                                                         </div>
                                                         <button className="btn btn-danger btn-fill pull-right" type="submit">Send</button>
                                                     </form>
-                                                    {questions.answers.map((answer, i) => {
-                                                        // console.log("Entered");
+                                                    {question.answers.map((answer, i) => {
                                                         return (<p className="description">{answer}</p>)
                                                     })}
                                                 </div>
@@ -320,7 +308,6 @@ class Landing extends Component {
                     </div>
 
 
-                    {/* <!-- <footer className="footer" data-color="black"> --> */}
                     <footer className="footer">
                         <div className="container">
                             <div className="copyright">
@@ -342,4 +329,8 @@ const mapStateToProps = (state) => ({
     errors: state.errors
 });
 
-export default withRouter(connect(mapStateToProps, { getFeedbacksList, getQuestionsList, addQuestion, updateQuestion })(Landing));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        { getFeedbacksList, getQuestionsList, addQuestion, updateQuestion }
+    )(Landing));

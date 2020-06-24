@@ -40,7 +40,6 @@ class Feedback extends Component {
         console.log(newFeedback);
 
         this.props.addFeedback(newFeedback, this.props.history);
-        window.location.reload(false); 
     };
 
     render() {
@@ -89,7 +88,7 @@ class Feedback extends Component {
                             />
                             <span className="red-text">{errors.message}</span>
                         </div>
-                        <button className="btn btn-primary pull-right" type="submit">Send</button>
+                        <button className="btn btn-primary pull-right" type="submit" style={{margin: "0px"}}>Send</button>
                     </form>
                 </div>
                 <div id="feedback-tab">Feedback</div>

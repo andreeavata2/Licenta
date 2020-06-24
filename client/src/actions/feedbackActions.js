@@ -16,6 +16,9 @@ export const getFeedbacksList = () => dispatch => {
 export const addFeedback = (feedbackData) => dispatch => {
     axios
         .post("http://localhost:5000/api/feedback/addFeedback", feedbackData)
+        .then((res => {
+            dispatch(getFeedbacksList())
+        }))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,

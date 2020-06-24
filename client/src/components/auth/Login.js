@@ -66,7 +66,7 @@ class Login extends Component {
                         <div className="col-md-8 col-xs-12 col-sm-12 login_form ">
                             <div className="container-fluid">
                                 <div className="col s12">
-                                    <h2>Log In</h2>
+                                    <h2>LOGIN</h2>
                                 </div>
                                 <div className="col s12">
                                     <form control="" className="form-group" noValidate onSubmit={this.onSubmit}>
@@ -78,7 +78,6 @@ class Login extends Component {
                                                 id="email"
                                                 type="email"
                                                 name="email"
-                                                // className="form__input"
                                                 className={classnames("form__input", {
                                                     invalid: errors.email || errors.emailnotfound
                                                 })}
@@ -97,7 +96,6 @@ class Login extends Component {
                                                 id="password"
                                                 type="password"
                                                 name="password"
-                                                // className="form__input"
                                                 className={classnames("form__input", {
                                                     invalid: errors.password || errors.passwordincorrect
                                                 })}
@@ -131,7 +129,6 @@ class Login extends Component {
                                             style={{
                                                 width: "140px",
                                                 borderRadius: "3px",
-                                                // letterSpacing: "1.5px",
                                                 margin: "10px"
                                             }}
                                             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
