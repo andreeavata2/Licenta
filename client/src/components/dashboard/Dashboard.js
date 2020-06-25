@@ -20,9 +20,12 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div className="wrapper d-flex align-items-stretch">
-                <Sidebar />
-            </div>
+            <>
+                <div className="wrapper d-flex align-items-stretch">
+                    <Sidebar />
+                </div>
+                
+            </>
         );
     }
 }

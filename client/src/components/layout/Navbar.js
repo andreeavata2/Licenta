@@ -58,15 +58,15 @@ class Navbar extends Component {
                                         <div className="nav-item nav-link active">
                                             <Link
                                                 to="/"
-                                                style={{
-                                                    width: "auto",
-                                                    borderRadius: "3px",
-                                                    letterSpacing: "1.5px"
-                                                }}
+                                                // style={{
+                                                //     width: "auto",
+                                                //     borderRadius: "3px",
+                                                //     letterSpacing: "1.5px"
+                                                // }}
                                                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                                             >
                                                 Home
-                                    </Link>
+                                            </Link>
                                         </div>
                                     </li>
 

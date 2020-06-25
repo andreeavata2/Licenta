@@ -2538,6 +2538,12 @@ fieldset[disabled] .form-control {
   margin-bottom: 20px;
 }
 
+.description-answear{
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  color: #777777;
+}
+
 .big-text {
   font-size: 18px;
   line-height: 25px;

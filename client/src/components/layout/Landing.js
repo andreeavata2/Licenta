@@ -281,7 +281,7 @@ class Landing extends Component {
                                                     <form control="" noValidate className="form panel-body"
                                                         onSubmit={(e) => this.onSubmitAnswer(e, index, question._id)}
                                                     >
-                                                        <div className="form-group col-md-11">
+                                                        <div className="form-group col-md-11" style={{margin: "0px"}}>
 
                                                             <input
                                                                 onChange={this.onChange}
@@ -295,7 +295,7 @@ class Landing extends Component {
                                                         <button className="btn btn-danger btn-fill pull-right" type="submit">Send</button>
                                                     </form>
                                                     {question.answers.map((answer, i) => {
-                                                        return (<p className="description">{answer}</p>)
+                                                        return (<p className="description-answear">{answer}</p>)
                                                     })}
                                                 </div>
                                             </div>
