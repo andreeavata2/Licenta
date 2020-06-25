@@ -10,6 +10,7 @@ const validateLoginInput = require("../../validation/login");
 
 // Load User model
 const User = require("../../models/User");
+const userControllers = require("../../controllers/student");
 
 // route POST api/users/delete
 // delete a student from id
@@ -137,6 +138,10 @@ router.get("/", async (req, res) => {
         return res.status(500).json({ msg: "Went wrong" });
     }
 
+})
+
+router.patch("/:id", async (req, res) => {
+    userControllers.updateUserProfile(req, res);
 })
 
 module.exports = router;
